@@ -1,18 +1,20 @@
 #ifndef AGRESSIF_HPP
 #define AGRESSIF_HPP
 
-#include "Entitee.hpp"
+#include "Agent.hpp"
 
 class Agressif : public Agent
 {
 	private :
 
 	public :
-		Agressif();
+		Agressif(int i, int j);
 		~Agressif();
 		void update();
 		void move();
 		bool dead();
+        void Afficher();
+        std::string JeSuis();
 };
 
 #endif

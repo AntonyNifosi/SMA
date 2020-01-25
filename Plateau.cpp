@@ -6,6 +6,37 @@ Plateau::Plateau()
 
 Plateau::Plateau(std::string Nom)
 {
+    std::ifstream fichier(Nom); 
+
+    if(fichier)
+    {
+        char temp;
+        for(int i = 0; i < TAILLE_PLATEAU; i++)
+        {
+            for(int j = 0; j < TAILLE_PLATEAU; j++)
+            {
+                fichier >> temp;
+                switch (temp)
+                {
+                    case 'A':
+                        _plateau[i][j] = new Agressif(i, j);
+                        break;
+
+                    case 'P':
+                        _plateau[i][j] = new Passifish(i, j);
+                        break;
+
+                    case 'R':
+                        _plateau[i][j] = new Ressource(i, j);
+                        break;
+                }
+            }
+        }
+    }
+    else
+    {
+        std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
+    }
 }
 
 Plateau::~Plateau()
@@ -45,6 +76,11 @@ void Plateau::Update()
 }
 
 void Plateau::Ajouter(Entitee* e, int x, int y)
+{
+
+}
+
+void Plateau::Delete(int x, int y)
 {
 
 }

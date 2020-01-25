@@ -2,8 +2,11 @@
 #define PLATEAU_HPP
 
 #include <vector>
-#include "Entitee.hpp"
+#include <fstream>
 #include "Agent.hpp"
+#include "Passifish.hpp"
+#include "Agressif.hpp"
+#include "Ressource.hpp"
 
 #define TAILLE_PLATEAU 20
 
@@ -20,6 +23,7 @@ class Plateau
         void Afficher();
         void Update();
         void Ajouter(Entitee* e, int x, int y);
+        void Delete(int x, int y);
         Entitee* recupCase(int x, int y);
 };
 
