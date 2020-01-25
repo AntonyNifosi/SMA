@@ -5,6 +5,8 @@
 #include <iostream>
 #include <random>
 
+extern std::mt19937 generateur;
+
 class Entitee
 {
     protected:
@@ -17,8 +19,8 @@ class Entitee
         int getPosx();
         int getPosy();
         void setPos(int x, int y);
-        void Afficher();
-        std::string JeSuis();
+        virtual void Afficher() = 0;
+        virtual std::string JeSuis() = 0;
 };
 
 #endif

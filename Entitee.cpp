@@ -1,6 +1,6 @@
 #include "Entitee.hpp"
 
-std::mt19937 generateur (666);
+std::mt19937 generateur(666);
 
 Entitee::Entitee(int x, int y) :
 _posx(x),

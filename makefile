@@ -1,4 +1,4 @@
-SRC=Plateau.cpp Entitee.cpp Agent.cpp Passifish.cpp Agressif.cpp Ressource.cpp
+SRC=Plateau.cpp Entitee.cpp Agent.cpp Passifish.cpp Agressif.cpp Ressource.cpp main.cpp
 EXE=SMA
 
 CXXFLAGS+=-Wall -Wextra -MMD -g -O2

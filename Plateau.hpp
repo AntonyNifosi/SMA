@@ -19,6 +19,8 @@ class Plateau
         ~Plateau();
         void Afficher();
         void Update();
+        void Ajouter(Entitee* e, int x, int y);
+        Entitee* recupCase(int x, int y);
 };
 
 #endif

@@ -43,3 +43,13 @@ void Plateau::Update()
         (*it)->update();
     }
 }
+
+void Plateau::Ajouter(Entitee* e, int x, int y)
+{
+
+}
+
+Entitee* Plateau::recupCase(int x, int y)
+{
+
+}
