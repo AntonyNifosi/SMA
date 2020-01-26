@@ -13,7 +13,7 @@
 class Plateau
 {
     private:
-        Entitee* _plateau[20][20];
+        Entitee* _plateau[TAILLE_PLATEAU][TAILLE_PLATEAU];
         std::vector <Agent*> _agents;
 
     public:
@@ -23,8 +23,10 @@ class Plateau
         void Afficher();
         void Update();
         void Ajouter(Entitee* e, int x, int y);
+        void Ajouter(Agent* e, int x, int y);
         void Delete(int x, int y);
         Entitee* recupCase(int x, int y);
+        void Deplacer(int x, int y, int dx, int dy);
 };
 
 #endif

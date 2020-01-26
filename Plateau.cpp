@@ -19,15 +19,26 @@ Plateau::Plateau(std::string Nom)
                 switch (temp)
                 {
                     case 'A':
-                        _plateau[i][j] = new Agressif(i, j);
+                        {
+                            Agressif* a = new Agressif(i, j);
+                            _plateau[i][j] = a;
+                            _agents.push_back(a);
+                        }
                         break;
 
                     case 'P':
-                        _plateau[i][j] = new Passifish(i, j);
+                        {
+                            Passifish* p = new Passifish(i, j);
+                            _plateau[i][j] = p;
+                            _agents.push_back(p);
+                        }
                         break;
 
                     case 'R':
                         _plateau[i][j] = new Ressource(i, j);
+                        break;
+                    default:
+                        _plateau[i][j] = nullptr;
                         break;
                 }
             }
@@ -37,13 +48,14 @@ Plateau::Plateau(std::string Nom)
     {
         std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
     }
+    
 }
 
 Plateau::~Plateau()
 {
     for(int i = 0; i < TAILLE_PLATEAU; i++)
     {
-        for (int j = 0; i < TAILLE_PLATEAU; j++)
+        for (int j = 0; j < TAILLE_PLATEAU; j++)
         {
             if(_plateau[i][j])
                 delete _plateau[i][j];    
@@ -55,15 +67,16 @@ void Plateau::Afficher()
 {
     for(int i = 0; i < TAILLE_PLATEAU; i++)
     {
-        for (int j = 0; i < TAILLE_PLATEAU; j++)
+        for (int j = 0; j < TAILLE_PLATEAU; j++)
         {
-            if(_plateau[i][j])
+            if(_plateau[i][j] != nullptr)
                 _plateau[i][j]->Afficher();
             else
                 std::cout << "  ";            
         }
         std::cout << std::endl;
     }
+    std::cout << std::endl << std::endl;
 }
 
 void Plateau::Update()
@@ -77,7 +90,13 @@ void Plateau::Update()
 
 void Plateau::Ajouter(Entitee* e, int x, int y)
 {
+    _plateau[x][y] = e;
+}
 
+void Plateau::Ajouter(Agent* e, int x, int y)
+{
+    _plateau[x][y] = e;
+    _agents.push_back(e);
 }
 
 void Plateau::Delete(int x, int y)
@@ -87,5 +106,11 @@ void Plateau::Delete(int x, int y)
 
 Entitee* Plateau::recupCase(int x, int y)
 {
+    return _plateau[x][y];
+}
 
+void Plateau::Deplacer(int x, int y, int dx, int dy)
+{
+    _plateau[x + dx][y + dy] = _plateau[x][y];
+    _plateau[x][y] = nullptr;
 }
