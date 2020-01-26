@@ -14,7 +14,7 @@
 class Plateau
 {
     private:
-        Entitee* _plateau[TAILLE_PLATEAU][TAILLE_PLATEAU];
+        std::array<std::array<Entitee*, TAILLE_PLATEAU>, TAILLE_PLATEAU> _plateau;
         std::vector <Agent*> _agents;
 
     public:
