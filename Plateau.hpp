@@ -2,6 +2,7 @@
 #define PLATEAU_HPP
 
 #include <vector>
+#include <array>
 #include <fstream>
 #include "Agent.hpp"
 #include "Passifish.hpp"
