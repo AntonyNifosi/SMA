@@ -6,7 +6,7 @@ Agent(x, y)
 
 void Passifish::Afficher()
 {
-    std::cout << "P ";
+    std::cout << " P ";
 }
 
 std::string Passifish::JeSuis()

@@ -76,7 +76,7 @@ void Plateau::Afficher()
             if(_plateau[i][j] != nullptr)
                 _plateau[i][j]->Afficher();
             else
-                std::cout << "  ";            
+                std::cout << " . ";            
         }
         std::cout << std::endl;
     }

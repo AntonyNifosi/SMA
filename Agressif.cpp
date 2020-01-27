@@ -6,7 +6,7 @@ Agent(x, y)
 
 void Agressif::Afficher()
 {
-    std::cout << "A ";
+    std::cout << " A ";
 }
 
 std::string Agressif::JeSuis()
