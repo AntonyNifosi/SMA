@@ -5,6 +5,9 @@ Entitee(x, y)
 {
 }
 
+Ressource::~Ressource()
+{}
+
 void Ressource::Afficher()
 {
     std::cout << "R ";

@@ -84,7 +84,7 @@ void Plateau::Update()
     std::vector<Agent*>::iterator it;
     for(it = _agents.begin(); it != _agents.end(); it++)
     {
-        (*it)->update();
+        (*it)->update(this);
     }
 }
 

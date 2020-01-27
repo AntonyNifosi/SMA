@@ -4,7 +4,6 @@
 #include <vector>
 #include <array>
 #include <fstream>
-#include "Agent.hpp"
 #include "Passifish.hpp"
 #include "Agressif.hpp"
 #include "Ressource.hpp"

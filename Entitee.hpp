@@ -15,7 +15,7 @@ class Entitee
 
     public:
         Entitee(int x, int y);
-        ~Entitee();
+        virtual ~Entitee();
         int getPosx();
         int getPosy();
         void setPos(int x, int y);

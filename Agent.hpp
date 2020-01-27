@@ -2,8 +2,16 @@
 #define AGENT_HPP
 
 #include "Entitee.hpp"
-
+#include "Plateau.hpp"
 #include <iostream>
+
+class Plateau;
+
+typedef struct Cible
+{
+	Entitee* cible;
+	int distance;
+}Cible_t;
 
 class Agent : public Entitee
 {
@@ -15,9 +23,10 @@ class Agent : public Entitee
 	public :
 		Agent(int x, int y);
 		~Agent();
-		void update();
+		void update(Plateau* p);
 		void move();
 		bool dead();
+		std::vector<Cible_t> EnVue(Plateau* p);
 };
 
 #endif
