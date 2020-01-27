@@ -1,2 +1,2 @@
-build/Plateau.o: Plateau.cpp Plateau.hpp Passifish.hpp Agent.hpp \
- Entitee.hpp Agressif.hpp Ressource.hpp
+build/Plateau.o: Plateau.cpp Plateau.hpp Entitee.hpp Agent.hpp \
+ Agressif.hpp Passifish.hpp Ressource.hpp

@@ -23,7 +23,7 @@ std::string Reader::readConfig()
 
     if(fichier)
     {
-        while (getline(fichier, line))
+        while (std::getline(fichier, line))
         {
             _config += line;
         }

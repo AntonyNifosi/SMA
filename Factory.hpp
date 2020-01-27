@@ -1,9 +1,9 @@
 #include <array>
-#include "Agent.hpp"
+#include "Reader.hpp"
 #include "Passifish.hpp"
 #include "Agressif.hpp"
 #include "Ressource.hpp"
-#include "Reader.hpp"
+
 
 class Factory
 {

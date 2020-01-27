@@ -1,7 +1,7 @@
 #ifndef RESSOURCE_HPP
 #define RESSOURCE_HPP
 
-#include "Entitee.hpp"
+#include "Agent.hpp"
 
 class Ressource : public Entitee
 {

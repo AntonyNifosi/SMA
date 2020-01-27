@@ -1,9 +1,10 @@
 #ifndef AGENT_HPP
 #define AGENT_HPP
 
-#include "Entitee.hpp"
-#include "Plateau.hpp"
+
 #include <iostream>
+#include "Plateau.hpp"
+#include "Entitee.hpp"
 
 class Plateau;
 

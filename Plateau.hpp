@@ -4,11 +4,14 @@
 #include <vector>
 #include <array>
 #include <fstream>
-#include "Passifish.hpp"
-#include "Agressif.hpp"
-#include "Ressource.hpp"
+
+#include "Entitee.hpp"
+#include "Agent.hpp"
+
 
 #define TAILLE_PLATEAU 20
+
+class Agent;
 
 class Plateau
 {

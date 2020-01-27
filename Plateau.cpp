@@ -1,4 +1,8 @@
 #include "Plateau.hpp"
+#include "Agressif.hpp"
+#include "Passifish.hpp"
+#include "Ressource.hpp"
+
 
 Plateau::Plateau()
 {
