@@ -8,7 +8,7 @@ class Passifish : public Agent
     public:
         Passifish(int x, int y);
         // ~Passifish();
-		// void update();
+		void update(Plateau* p);
 		// void move();
 		// bool dead();
         void Afficher();
