@@ -16,8 +16,9 @@ std::string Passifish::JeSuis()
 
 void Passifish::update(Plateau* p)
 {
-    int new_x = generateur() % 1 * 2 - 1;
-    int new_y = generateur() % 1 * 2 - 1;
+    std::cout << "On update Passif" << std::endl;
+    int new_x = (generateur() % 2) * 2 - 1;
+    int new_y = (generateur() % 2) * 2 - 1;
 
     Agent::move(Vector2(new_x, new_y), p);
 }

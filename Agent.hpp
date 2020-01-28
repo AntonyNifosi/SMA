@@ -3,7 +3,6 @@
 
 #include <cmath>
 #include <iostream>
-#include "Vector2.hpp"
 #include "Plateau.hpp"
 #include "Entitee.hpp"
 
@@ -26,7 +25,7 @@ class Agent : public Entitee
 	public :
 		Agent(int x, int y);
 		~Agent();
-		void update(Plateau* p);
+		virtual void update(Plateau* p);
 		void move(Vector2 dir, Plateau* p);
 		bool dead();
 		bool isAffame();

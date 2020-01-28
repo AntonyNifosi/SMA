@@ -23,8 +23,8 @@ int Entitee::getPosy()
     return _posy;
 }
 
-void Entitee::setPos(int x, int y)
+void Entitee::setPos(Vector2 pos)
 {
-    _posx = x;
-    _posy = y;
+    _posx = pos.getX();
+    _posy = pos.getY();
 }

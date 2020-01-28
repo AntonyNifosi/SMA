@@ -10,7 +10,7 @@ class Agressif : public Agent
 	public :
 		Agressif(int x, int y);
 		// ~Agressif();
-		// void update();
+		void update(Plateau* p);
 		// void move();
 		// bool dead();
         void Afficher();

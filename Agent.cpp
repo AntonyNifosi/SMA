@@ -9,21 +9,16 @@ Agent::~Agent()
 
 void Agent::update(Plateau* p)
 {
-
+    std::cout << "WE CA BUG" << std::endl;
 }
 
 void Agent::move(Vector2 dir, Plateau* p)
 {
+    std::cout << dir.getX() << " / " << dir.getY() << std::endl;
     if (p->recupCase(_posx + dir.getX(), _posy + dir.getY()) == nullptr)
     {
-        if (_posx + dir.getX() < TAILLE_PLATEAU && _posx >= 0)
-        {
-            _posx += dir.getX();
-        }
-        if (_posy + dir.getY() < TAILLE_PLATEAU && _posy >= 0)
-        {
-            _posy += dir.getY();
-        }
+        std::cout << "On deplace !" << std::endl;
+        p->Deplacer(this, dir);
     }
 }
 

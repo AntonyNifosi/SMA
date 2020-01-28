@@ -88,6 +88,7 @@ void Plateau::Update()
     std::vector<Agent*>::iterator it;
     for(it = _agents.begin(); it != _agents.end(); it++)
     {
+        std::cout << (*it)->JeSuis() << std::endl;
         (*it)->update(this);
     }
 }
@@ -113,14 +114,16 @@ Entitee* Plateau::recupCase(int x, int y)
     return _plateau[x][y];
 }
 
-void Plateau::Deplacer(Entitee* e, Vector2 v);
+void Plateau::Deplacer(Entitee* e, Vector2 v)
 {
-    posx = e->getPosx();
-    posy = e->getPosy();
+    int posx = e->getPosx();
+    int posy = e->getPosy();
     
-    e->setPos(v);
+    Vector2 newPos(posx + v.getX(), posy + v.getY());
 
-    _plateau[v.getX()][v.getY()] = _plateau[posx][posy];
+    e->setPos(newPos);
+
+    _plateau[newPos.getX()][newPos.getY()] = _plateau[posx][posy];
 
     _plateau[posx][posy] = nullptr;
 }
