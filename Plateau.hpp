@@ -5,11 +5,10 @@
 #include <array>
 #include <fstream>
 
+#define TAILLE_PLATEAU 20
+
 #include "Entitee.hpp"
 #include "Agent.hpp"
-
-
-#define TAILLE_PLATEAU 20
 
 class Agent;
 
@@ -29,7 +28,7 @@ class Plateau
         void Ajouter(Agent* e, int x, int y);
         void Delete(int x, int y);
         Entitee* recupCase(int x, int y);
-        void Deplacer(int x, int y, int dx, int dy);
+        void Deplacer(Entitee* e, Vector2 v);
 };
 
 #endif

@@ -10,7 +10,7 @@ Ressource::~Ressource()
 
 void Ressource::Afficher()
 {
-    std::cout << "R ";
+    std::cout << " R ";
 }
 
 std::string Ressource::JeSuis()

@@ -113,8 +113,14 @@ Entitee* Plateau::recupCase(int x, int y)
     return _plateau[x][y];
 }
 
-void Plateau::Deplacer(int x, int y, int dx, int dy)
+void Plateau::Deplacer(Entitee* e, Vector2 v);
 {
-    _plateau[x + dx][y + dy] = _plateau[x][y];
-    _plateau[x][y] = nullptr;
+    posx = e->getPosx();
+    posy = e->getPosy();
+    
+    e->setPos(v);
+
+    _plateau[v.getX()][v.getY()] = _plateau[posx][posy];
+
+    _plateau[posx][posy] = nullptr;
 }
