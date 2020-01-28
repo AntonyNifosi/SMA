@@ -36,7 +36,8 @@ std::vector<Cible_t> Agent::EnVue(Plateau* p)
     {
         if(i >= 0 && i < TAILLE_PLATEAU)
         {
-            for(int j = _posy - _vision + abs(_posx - i); j < _posy + _vision - (abs(_posx - i)); j++)
+            int distI = abs(_posx - i);
+            for(int j = _posy - _vision + distI; j < _posy + _vision - distI; j++)
             {
                 if( j >= 0 && j < TAILLE_PLATEAU)
                 {

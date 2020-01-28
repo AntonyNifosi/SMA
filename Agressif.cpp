@@ -3,7 +3,7 @@
 Agressif::Agressif(int x, int y):
 Agent(x, y)
 {
-    _vision = 10;
+    _vision = 4;
 }
 
 void Agressif::update(Plateau *p)
