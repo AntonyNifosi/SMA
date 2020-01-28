@@ -3,6 +3,7 @@
 
 
 #include <iostream>
+#include "Vector2.hpp"
 #include "Plateau.hpp"
 #include "Entitee.hpp"
 
@@ -20,12 +21,13 @@ class Agent : public Entitee
 		int _age;
 		int _time_no_eat;
 		bool _affame;
+		Vector2 direction;
 
 	public :
 		Agent(int x, int y);
 		~Agent();
 		void update(Plateau* p);
-		void move();
+		void move(Vector2 dir);
 		bool dead();
 		std::vector<Cible_t> EnVue(Plateau* p);
 };
