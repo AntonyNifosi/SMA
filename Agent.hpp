@@ -27,7 +27,7 @@ class Agent : public Entitee
 		Agent(int x, int y);
 		~Agent();
 		void update(Plateau* p);
-		void move(Vector2 dir);
+		void move(Vector2 dir, Plateau* p);
 		bool dead();
 		bool isAffame();
 		std::vector<Cible_t> EnVue(Plateau* p);
