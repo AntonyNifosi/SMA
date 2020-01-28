@@ -30,6 +30,7 @@ class Agent : public Entitee
 		bool dead();
 		bool isAffame();
 		std::vector<Cible_t> EnVue(Plateau* p);
+		void afficherCible(std::vector<Cible_t> cibles);
 };
 
 #endif

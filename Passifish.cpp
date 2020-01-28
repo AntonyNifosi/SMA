@@ -16,7 +16,6 @@ std::string Passifish::JeSuis()
 
 void Passifish::update(Plateau* p)
 {
-    std::cout << "On update Passif" << std::endl;
     int new_x = (generateur() % 2) * 2 - 1;
     int new_y = (generateur() % 2) * 2 - 1;
 
