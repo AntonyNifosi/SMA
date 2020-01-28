@@ -25,21 +25,21 @@ std::vector<Cible_t> Agent::EnVue(Plateau* p)
 {
     std::vector<Cible_t> Cibles;
 
-    for(int i = posx - _vision; i < posx + _vision; i++)
+    for(int i = _posx - _vision; i < _posx + _vision; i++)
     {
         if(i >= 0 && i < TAILLE_PLATEAU)
         {
-            for(int j = posy - _vision + abs(posx - i); j < posy - _vision + (abs(posx - i)); i++)
+            for(int j = _posy - _vision + abs(_posx - i); j < _posy - _vision + (abs(_posx - i)); i++)
             {
                 if( j >= 0 && j < TAILLE_PLATEAU)
                 {
-                    Entitee e = p->recupCase(i, j); 
+                    Entitee* e = p->recupCase(i, j); 
                     if(e != nullptr)
                     {
                         Cible_t c;
                         c.cible = e;
-                        c.distance = abs(posx - i) + abs(posy - j);
-                        Cibles.pushback(c);
+                        c.distance = abs(_posx - i) + abs(_posy - j);
+                        Cibles.push_back(c);
                     }
                 }
             }
