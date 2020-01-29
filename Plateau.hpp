@@ -20,7 +20,7 @@ class Plateau
 
     public:
         Plateau();
-        Plateau(std::string Nom);
+        Plateau(std::string nom);
         ~Plateau();
         void Afficher();
         void Update();

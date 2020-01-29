@@ -8,6 +8,7 @@ class Agressif : public Agent
 	private :
 
 	public :
+		Agressif();
 		Agressif(int x, int y);
 		// ~Agressif();
 		void update(Plateau* p);

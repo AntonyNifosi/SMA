@@ -6,6 +6,7 @@
 class Passifish : public Agent
 {
     public:
+        Passifish();
         Passifish(int x, int y);
         // ~Passifish();
 		void update(Plateau* p);

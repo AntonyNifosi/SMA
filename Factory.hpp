@@ -1,3 +1,7 @@
+#ifndef FACTORY_HPP
+#define FACTORY_HPP
+
+
 #include <array>
 #include "Reader.hpp"
 #include "Passifish.hpp"
@@ -9,5 +13,9 @@ class Factory
 {
     public :
         Factory();
-        static std::array<std::array<Entitee*, 20>, 20> createAgents();
+        Passifish* createPassifish();
+        Agressif* createAgressif();
+        Ressource* createRessource();
 };
+
+#endif

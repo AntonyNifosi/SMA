@@ -1,5 +1,8 @@
 #include "Passifish.hpp"
 
+Passifish::Passifish() : Agent(0 ,0)
+{}
+
 Passifish::Passifish(int x, int y) :
 Agent(x, y)
 {}

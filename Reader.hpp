@@ -1,3 +1,6 @@
+#ifndef READER_HPP
+#define READER_HPP
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -16,3 +19,5 @@ class Reader
         static Reader* getInstance(std::string path);
         std::string readConfig();
 };
+
+#endif

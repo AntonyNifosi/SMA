@@ -18,20 +18,11 @@ Reader* Reader::getInstance(std::string path)
 
 std::string Reader::readConfig()
 {
-    std::ifstream fichier(_path); 
-    std::string line;
+    std::ifstream ifs(_path);
+    std::string content( (std::istreambuf_iterator<char>(ifs) ),
+                       (std::istreambuf_iterator<char>()));;
 
-    if(fichier)
-    {
-        while (std::getline(fichier, line))
-        {
-            _config += line;
-        }
-    }
-    else
-    {
-        std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
-    }
-
+    _config = content;
+    std::cout << "Fichier lu :\n" << _config << std::endl;
     return _config;
 }

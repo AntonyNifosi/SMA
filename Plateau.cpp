@@ -2,57 +2,60 @@
 #include "Agressif.hpp"
 #include "Passifish.hpp"
 #include "Ressource.hpp"
+#include "Reader.hpp"
+#include "Factory.hpp"
 
 
 Plateau::Plateau()
 {
 }
 
-Plateau::Plateau(std::string Nom)
+Plateau::Plateau(std::string nom)
 {
-    std::ifstream fichier(Nom); 
+    Factory f;
+    Reader *r = Reader::getInstance(nom);
+    std::string config = r->readConfig();
 
-    if(fichier)
+    for (unsigned int i = 0; i < config.size(); i++)
     {
-        char temp;
-        for(int i = 0; i < TAILLE_PLATEAU; i++)
+        switch(config[i])
         {
-            for(int j = 0; j < TAILLE_PLATEAU; j++)
+            case 'A':
             {
-                fichier >> temp;
-                switch (temp)
-                {
-                    case 'A':
-                        {
-                            Agressif* a = new Agressif(i, j);
-                            _plateau[i][j] = a;
-                            _agents.push_back(a);
-                        }
-                        break;
-
-                    case 'P':
-                        {
-                            Passifish* p = new Passifish(i, j);
-                            _plateau[i][j] = p;
-                            _agents.push_back(p);
-                        }
-                        break;
-
-                    case 'R':
-                        _plateau[i][j] = new Ressource(i, j);
-                        break;
-                    default:
-                        _plateau[i][j] = nullptr;
-                        break;
-                }
+                Agressif* a = f.createAgressif();
+                _plateau[(i/20)][i % 20] = a;
+                a->setPos(Vector2(i / 20, i % 20));
+                _agents.push_back(a);
+                std::cout << "Agent cree !" << std::endl;
             }
-        }
+            break;
+
+            case 'P':
+            {
+                Passifish* p = f.createPassifish();
+                _plateau[(i/20)][i % 20] = p;
+                p->setPos(Vector2(i / 20, i % 20));
+                _agents.push_back(p);
+                std::cout << "Agent cree !" << std::endl;
+            }
+            break;
+
+            case 'R':
+            {
+                Ressource* r = f.createRessource();
+                _plateau[(i/20)][i % 20] = r;
+                r->setPos(Vector2(i / 20, i % 20));
+                std::cout << "Ressource cree !" << std::endl;
+            }
+            break;
+            
+            default:
+                _plateau[(i/20)][i % 20] = nullptr;
+                break;
+
+        }            
     }
-    else
-    {
-        std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
-    }
-    
+    std::cout << "Plateau INIT --> OK !" << std::endl;
 }
 
 Plateau::~Plateau()

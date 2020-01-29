@@ -6,6 +6,7 @@
 class Ressource : public Entitee
 {
     public:
+        Ressource();
         Ressource(int x, int y);
         ~Ressource();
         void Afficher();
