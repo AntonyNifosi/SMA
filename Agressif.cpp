@@ -1,15 +1,11 @@
 #include "Agressif.hpp"
 
-Agressif::Agressif() : Agent(0, 0)
-{
-    _vision = 4;
-}
+Agressif::Agressif() : Agent(0, 0, 4)
+{}
 
 Agressif::Agressif(int x, int y):
-Agent(x, y)
-{
-    _vision = 4;
-}
+Agent(x, y, 4)
+{}
 
 void Agressif::update(Plateau *p)
 {

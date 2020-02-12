@@ -16,41 +16,43 @@ Plateau::Plateau(std::string nom)
     Reader *r = Reader::getInstance(nom);
     std::string config = r->readConfig();
     
-    for (unsigned int i = 0; i < TAILLE_PLATEAU * TAILLE_PLATEAU; i++)
+    for (unsigned int i = 0; i < TAILLE_PLATEAU; i++)
     {
-        switch(config[i])
-        { 
-            case 'A':
-            {
-                Agressif* a = f.createAgressif();
-                _plateau[(i/20)][i % 20] = a;
-                a->setPos(Vector2(i / 20, i % 20));
-                _agents.push_back(a);
-            }
-            break;
-
-            case 'P':
-            {
-                Passifish* p = f.createPassifish();
-                _plateau[(i/20)][i % 20] = p;
-                p->setPos(Vector2(i / 20, i % 20));
-                _agents.push_back(p);
-            }
-            break;
-
-            case 'R':
-            {
-                Ressource* r = f.createRessource();
-                _plateau[(i/20)][i % 20] = r;
-                r->setPos(Vector2(i / 20, i % 20));
-            }
-            break;
-            
-            default:
-                _plateau[(i/20)][i % 20] = nullptr;
+        for (unsigned int j = 0; j < TAILLE_PLATEAU; j++)
+        {
+            switch(config[i * TAILLE_PLATEAU + j])
+            { 
+                case 'A':
+                {
+                    Agressif* a = f.createAgressif();
+                    _plateau[i][j] = a;
+                    a->setPos(Vector2(i, j));
+                    _agents.push_back(a);
+                }
                 break;
 
-        }            
+                case 'P':
+                {
+                    Passifish* p = f.createPassifish();
+                    _plateau[i][j] = p;
+                    p->setPos(Vector2(i, j));
+                    _agents.push_back(p);
+                }
+                break;
+
+                case 'R':
+                {
+                    Ressource* r = f.createRessource();
+                    _plateau[i][j] = r;
+                    r->setPos(Vector2(i, j));
+                }
+                break;
+                
+                default:
+                    _plateau[i][j] = nullptr;
+                    break;
+            }
+        }
     }
     std::cout << "Plateau INIT --> OK !" << std::endl;
 }

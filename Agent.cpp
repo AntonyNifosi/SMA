@@ -1,7 +1,7 @@
 #include "Agent.hpp"
 
-Agent::Agent(int x, int y) : 
-Entitee(x, y), direction(0 ,0)
+Agent::Agent(int x, int y, int vision) : 
+Entitee(x, y), _vision(vision), direction(0 ,0)
 {}
 
 Agent::~Agent()

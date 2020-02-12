@@ -1,15 +1,11 @@
 #include "Passifish.hpp"
 
-Passifish::Passifish() : Agent(0 ,0)
-{
-    _vision = 3;
-}
+Passifish::Passifish() : Agent(0 ,0, 3)
+{}
 
 Passifish::Passifish(int x, int y) :
-Agent(x, y)
-{
-    _vision = 3;
-}
+Agent(x, y, 3)
+{}
 
 void Passifish::Afficher()
 {

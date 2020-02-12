@@ -23,7 +23,7 @@ class Agent : public Entitee
 		Vector2 direction;
 
 	public :
-		Agent(int x, int y);
+		Agent(int x, int y, int vision);
 		~Agent();
 		virtual void update(Plateau* p);
 		void move(Vector2 dir, Plateau* p);
