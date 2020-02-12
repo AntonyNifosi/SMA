@@ -85,6 +85,7 @@ void Plateau::Afficher()
 
 void Plateau::Update()
 {
+    std::cout << "Update du plateau taille vecteur agent : " << _agents.size() <<  std::endl;
     std::vector<Agent*>::iterator it;
     for(it = _agents.begin(); it != _agents.end(); it++)
     {

@@ -1,7 +1,9 @@
 #include "Agressif.hpp"
 
 Agressif::Agressif() : Agent(0, 0)
-{}
+{
+    _vision = 4;
+}
 
 Agressif::Agressif(int x, int y):
 Agent(x, y)
