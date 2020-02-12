@@ -15,18 +15,17 @@ Plateau::Plateau(std::string nom)
     Factory f;
     Reader *r = Reader::getInstance(nom);
     std::string config = r->readConfig();
-
-    for (unsigned int i = 0; i < config.size(); i++)
+    
+    for (unsigned int i = 0; i < TAILLE_PLATEAU * TAILLE_PLATEAU; i++)
     {
         switch(config[i])
-        {
+        { 
             case 'A':
             {
                 Agressif* a = f.createAgressif();
                 _plateau[(i/20)][i % 20] = a;
                 a->setPos(Vector2(i / 20, i % 20));
                 _agents.push_back(a);
-                std::cout << "Agent cree !" << std::endl;
             }
             break;
 
@@ -36,7 +35,6 @@ Plateau::Plateau(std::string nom)
                 _plateau[(i/20)][i % 20] = p;
                 p->setPos(Vector2(i / 20, i % 20));
                 _agents.push_back(p);
-                std::cout << "Agent cree !" << std::endl;
             }
             break;
 
@@ -45,7 +43,6 @@ Plateau::Plateau(std::string nom)
                 Ressource* r = f.createRessource();
                 _plateau[(i/20)][i % 20] = r;
                 r->setPos(Vector2(i / 20, i % 20));
-                std::cout << "Ressource cree !" << std::endl;
             }
             break;
             

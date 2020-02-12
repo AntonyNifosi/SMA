@@ -13,7 +13,7 @@ int main()
     std::cout << "=============== Tour 0 ===============" << std::endl;
     
     p.Afficher();
-
+    
     for(int i = 0; i < NB_TOURS; i++)
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
