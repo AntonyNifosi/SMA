@@ -3,7 +3,6 @@
 
 
 #include <array>
-#include "Reader.hpp"
 #include "Passifish.hpp"
 #include "Agressif.hpp"
 #include "Ressource.hpp"

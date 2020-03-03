@@ -6,9 +6,9 @@
 #include <fstream>
 
 #define TAILLE_PLATEAU 20
-
 #include "Entitee.hpp"
-#include "Agent.hpp"
+#include "Factory.hpp"
+
 
 class Agent;
 
@@ -17,6 +17,7 @@ class Plateau
     private:
         std::array<std::array<Entitee*, TAILLE_PLATEAU>, TAILLE_PLATEAU> _plateau;
         std::vector <Agent*> _agents;
+        Factory f;
 
     public:
         Plateau();
@@ -25,10 +26,12 @@ class Plateau
         void Afficher();
         void Update();
         void Ajouter(Entitee* e, int x, int y);
+        void createAgent(AgentType type, Vector2 position);
         void Ajouter(Agent* e, int x, int y);
         void Delete(int x, int y);
         Entitee* recupCase(int x, int y);
         void Deplacer(Entitee* e, Vector2 v);
+        Vector2 caseLibre(Entitee* e);
 };
 
 #endif

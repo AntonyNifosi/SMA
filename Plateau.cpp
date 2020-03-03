@@ -12,7 +12,7 @@ Plateau::Plateau()
 
 Plateau::Plateau(std::string nom)
 {
-    Factory f;
+    
     Reader *r = Reader::getInstance(nom);
     std::string config = r->readConfig();
     
@@ -24,19 +24,13 @@ Plateau::Plateau(std::string nom)
             { 
                 case 'A':
                 {
-                    Agressif* a = f.createAgressif();
-                    _plateau[i][j] = a;
-                    a->setPos(Vector2(i, j));
-                    _agents.push_back(a);
+                    createAgent(AGRESSIF, Vector2(i, j));
                 }
                 break;
 
                 case 'P':
                 {
-                    Passifish* p = f.createPassifish();
-                    _plateau[i][j] = p;
-                    p->setPos(Vector2(i, j));
-                    _agents.push_back(p);
+                    createAgent(PASSIFISH, Vector2(i, j));
                 }
                 break;
 
@@ -100,6 +94,30 @@ void Plateau::Ajouter(Entitee* e, int x, int y)
     _plateau[x][y] = e;
 }
 
+void Plateau::createAgent(AgentType type, Vector2 position)
+{
+    switch (type)
+    {
+        case AGRESSIF:
+        {
+            Agressif* a = f.createAgressif();
+            _plateau[position.getX()][position.getY()] = a;
+            a->setPos(position);
+            _agents.push_back(a);
+        }
+        break;
+
+        case PASSIFISH:
+        {
+            Passifish* p = f.createPassifish();
+            _plateau[position.getX()][position.getY()] = p;
+            p->setPos(position);
+            _agents.push_back(p);
+        }  
+        break;
+    }
+}
+
 void Plateau::Ajouter(Agent* e, int x, int y)
 {
     _plateau[x][y] = e;
@@ -128,4 +146,21 @@ void Plateau::Deplacer(Entitee* e, Vector2 v)
     _plateau[newPos.getX()][newPos.getY()] = _plateau[posx][posy];
 
     _plateau[posx][posy] = nullptr;
+}
+
+Vector2 Plateau::caseLibre(Entitee *e)
+{
+    Vector2 location (e->getPosx(), e->getPosy());
+
+    for (int i = location.getY() - 1; i < location.getY() + 1; i++)
+    {
+        for (int j = location.getX() - 1; j < location.getX() + 1; j++)
+        {
+            if (_plateau[i][j] == nullptr)
+            {
+                return Vector2(i, j);
+            }
+        }
+    }
+    return Vector2(-1, -1);
 }

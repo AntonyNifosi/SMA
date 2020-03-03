@@ -1,3 +1,4 @@
+#include "Agent.hpp"
 #include "Passifish.hpp"
 
 Passifish::Passifish() : Agent(0 ,0, 3)

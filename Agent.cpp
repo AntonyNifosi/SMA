@@ -1,4 +1,6 @@
 #include "Agent.hpp"
+#include "Plateau.hpp"
+#include "Entitee.hpp"
 
 Agent::Agent(int x, int y, int vision) : 
 Entitee(x, y), _vision(vision), direction(0 ,0)
@@ -65,4 +67,17 @@ void Agent::afficherCible(std::vector<Cible_t> cibles)
         std::cout << (*it).cible->JeSuis() << " distance : " << (*it).distance << std::endl;
     }
     std::cout << std::endl;
+}
+
+void Agent::seReproduire(Plateau *p)
+{
+    Vector2 location = p->caseLibre(this);
+    if (location.isValidPosition())
+    {
+        p->createAgent(AGRESSIF, location);
+    }
+    else
+    {
+        std::cout << "impossible de reproduire !" << std::endl;
+    }
 }

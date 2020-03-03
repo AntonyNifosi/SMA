@@ -3,10 +3,16 @@
 
 #include <cmath>
 #include <iostream>
-#include "Plateau.hpp"
+
+#include "Vector2.hpp"
 #include "Entitee.hpp"
 
 class Plateau;
+
+enum AgentType
+{
+	AGRESSIF, PASSIFISH
+};
 
 typedef struct Cible
 {
@@ -31,6 +37,7 @@ class Agent : public Entitee
 		bool isAffame();
 		std::vector<Cible_t> EnVue(Plateau* p);
 		void afficherCible(std::vector<Cible_t> cibles);
+		void seReproduire(Plateau *p);
 };
 
 #endif

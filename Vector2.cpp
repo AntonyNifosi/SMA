@@ -22,3 +22,16 @@ void Vector2::setY(int y)
 {
     _y = y;
 }
+
+bool Vector2::isValidPosition()
+{
+    if (_x >= 0 && _y >= 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    
+}

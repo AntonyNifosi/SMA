@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <random>
+
 #include "Vector2.hpp"
 
 extern std::mt19937 generateur;
