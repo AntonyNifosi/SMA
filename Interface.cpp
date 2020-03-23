@@ -1,7 +1,7 @@
 #include "Plateau.hpp"
 #include "Ressource.hpp"
 
-#define NB_TOURS 10
+#define NB_TOURS 50
 #define NB_RESSOURCE_TOUR 2
 
 #include <chrono>

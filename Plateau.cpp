@@ -136,8 +136,8 @@ Entitee* Plateau::recupCase(int x, int y)
 
 void Plateau::Deplacer(Entitee* e, Vector2 v)
 {
-    int posx = e->getPosx();
-    int posy = e->getPosy();
+    int posx = e->getX();
+    int posy = e->getY();
     
     Vector2 newPos(posx + v.getX(), posy + v.getY());
 
@@ -150,11 +150,11 @@ void Plateau::Deplacer(Entitee* e, Vector2 v)
 
 Vector2 Plateau::caseLibre(Entitee *e)
 {
-    Vector2 location (e->getPosx(), e->getPosy());
+    Vector2 location (e->getX(), e->getY());
 
-    for (int i = location.getY() - 1; i < location.getY() + 1; i++)
+    for (int i = location.getX() - 1; i <= location.getX() + 1; i++)
     {
-        for (int j = location.getX() - 1; j < location.getX() + 1; j++)
+        for (int j = location.getY() - 1; j <= location.getY() + 1; j++)
         {
             if (_plateau[i][j] == nullptr)
             {
@@ -163,4 +163,93 @@ Vector2 Plateau::caseLibre(Entitee *e)
         }
     }
     return Vector2(-1, -1);
+}
+
+Vector2 Plateau::PathFinding(Vector2 depart, Vector2 arrive)
+{
+    std::array<std::array<int, TAILLE_PLATEAU>, TAILLE_PLATEAU> _matrice;
+    std::array<std::array<int, TAILLE_PLATEAU>, TAILLE_PLATEAU> _utilise;
+
+    for (unsigned int i = 0; i < TAILLE_PLATEAU; i++)
+    {
+        for (unsigned int j = 0; j < TAILLE_PLATEAU; j++)
+        {
+            _matrice[i][j] = 9999;
+            _utilise[i][j] = 0;
+        }
+    }  
+
+    _matrice[depart.getX()][depart.getY()] = 0;
+
+    while(_matrice[arrive.getX()][arrive.getY()] == 9999)
+    {
+        Vector2 location(0, 0);
+        int dist = 9999;
+
+        for (unsigned int i = 0; i < TAILLE_PLATEAU; i++)
+        {
+            for (unsigned int j = 0; j < TAILLE_PLATEAU; j++)
+            {
+                if(_matrice[i][j] < dist && !_utilise[i][j])
+                {
+                    dist = _matrice[i][j];
+                    location.setX(i);
+                    location.setY(j);
+                }
+            }
+        }
+
+        for (int i = location.getX() - 1; i <= location.getX() + 1; i++)
+        {
+            if(i >= 0 && i <= TAILLE_PLATEAU)
+            {
+                for (int j = location.getY() - 1; j <= location.getY() + 1; j++)
+                {
+                    if(j >= 0 && j <= TAILLE_PLATEAU && abs(i - location.getX()) + abs(j - location.getY()) == 1)
+                    {
+                        if (_plateau[i][j] == nullptr || (i == arrive.getX() && j == arrive.getY()))
+                        {
+                            if(_matrice[i][j] > _matrice[location.getX()][location.getY()])
+                            {
+                                _matrice[i][j] = _matrice[location.getX()][location.getY()] + 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        _utilise[location.getX()][location.getY()] = 1;
+    }
+
+    Vector2 act(arrive.getX(), arrive.getY());
+    Vector2 depl(0, 0);
+
+
+
+    while(act != depart)
+    {
+        for (int i = act.getX() - 1; i <= act.getX() + 1; i++)
+        {
+            if(i >= 0 && i <= TAILLE_PLATEAU)
+            {
+                for (int j = act.getY() - 1; j <= act.getY() + 1; j++)
+                {
+                    if(j >= 0 && j <= TAILLE_PLATEAU && abs(i - act.getX()) + abs(j - act.getY()) == 1)
+                    {
+                        if(_matrice[i][j] == _matrice[act.getX()][act.getY()] - 1)
+                        {
+                            depl.setX(act.getX() - i);
+                            depl.setY(act.getY() - j);
+
+                            act.setX(i);
+                            act.setY(j);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return depl;
 }

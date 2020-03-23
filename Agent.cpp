@@ -14,8 +14,8 @@ void Agent::update(Plateau* p)
 
 void Agent::move(Vector2 dir, Plateau* p)
 {
-    int newPosX = _posx + dir.getX();
-    int newPosY = _posy + dir.getY();
+    int newPosX = _pos.getX() + dir.getX();
+    int newPosY = _pos.getY() + dir.getY();
     if(newPosX >= 0 && newPosX < TAILLE_PLATEAU && newPosY >= 0 && newPosY < TAILLE_PLATEAU)
     {
         if (p->recupCase(newPosX, newPosY) == nullptr)
@@ -25,30 +25,25 @@ void Agent::move(Vector2 dir, Plateau* p)
     }
 }
 
-bool Agent::dead()
-{
-    return true;
-}
-
 std::vector<Cible_t> Agent::EnVue(Plateau* p)
 {
     std::vector<Cible_t> Cibles;
 
-    for(int i = _posx - _vision; i < _posx + _vision; i++)
+    for(int i = _pos.getX() - _vision; i < _pos.getX() + _vision; i++)
     {
         if(i >= 0 && i < TAILLE_PLATEAU)
         {
-            int distI = abs(_posx - i);
-            for(int j = _posy - _vision + distI; j < _posy + _vision - distI; j++)
+            int distI = abs(_pos.getX() - i);
+            for(int j = _pos.getY() - _vision + distI; j < _pos.getY() + _vision - distI; j++)
             {
-                if( j >= 0 && j < TAILLE_PLATEAU)
+                if( j >= 0 && j < TAILLE_PLATEAU && !(j == _pos.getY() && i == _pos.getX()))
                 {
                     Entitee* e = p->recupCase(i, j); 
                     if(e != nullptr)
                     {
                         Cible_t c;
                         c.cible = e;
-                        c.distance = abs(_posx - i) + abs(_posy - j);
+                        c.distance = abs(_pos.getX() - i) + abs(_pos.getY() - j);
                         Cibles.push_back(c);
                     }
                 }

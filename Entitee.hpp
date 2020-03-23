@@ -12,17 +12,17 @@ extern std::mt19937 generateur;
 class Entitee
 {
     protected:
-        int _posx;
-        int _posy;
+        Vector2 _pos;
 
     public:
         Entitee(int x, int y);
         virtual ~Entitee();
-        int getPosx();
-        int getPosy();
+        int getX();
+        int getY();
         void setPos(Vector2 pos);
         virtual void Afficher() = 0;
         virtual std::string JeSuis() = 0;
+        Vector2 getVector();
 };
 
 #endif

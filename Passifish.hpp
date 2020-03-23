@@ -10,8 +10,7 @@ class Passifish : public Agent
         Passifish(int x, int y);
         // ~Passifish();
 		void update(Plateau* p);
-		// void move();
-		// bool dead();
+		bool Mort();
         void Afficher();
         std::string JeSuis();
 };

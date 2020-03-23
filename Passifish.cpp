@@ -1,11 +1,11 @@
 #include "Agent.hpp"
 #include "Passifish.hpp"
 
-Passifish::Passifish() : Agent(0 ,0, 3)
+Passifish::Passifish() : Agent(0 , 0, 6)
 {}
 
 Passifish::Passifish(int x, int y) :
-Agent(x, y, 3)
+Agent(x, y, 6)
 {}
 
 void Passifish::Afficher()
@@ -16,6 +16,11 @@ void Passifish::Afficher()
 std::string Passifish::JeSuis()
 {
     return "Passifish";
+}
+
+bool Passifish::Mort()
+{
+    return _time_no_eat > 12;
 }
 
 void Passifish::update(Plateau* p)

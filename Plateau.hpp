@@ -32,6 +32,7 @@ class Plateau
         Entitee* recupCase(int x, int y);
         void Deplacer(Entitee* e, Vector2 v);
         Vector2 caseLibre(Entitee* e);
+        Vector2 PathFinding(Vector2 depart, Vector2 arrive);
 };
 
 #endif

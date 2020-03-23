@@ -1,7 +1,6 @@
 #ifndef AGENT_HPP
 #define AGENT_HPP
 
-#include <cmath>
 #include <iostream>
 
 #include "Vector2.hpp"
@@ -33,8 +32,7 @@ class Agent : public Entitee
 		~Agent();
 		virtual void update(Plateau* p);
 		void move(Vector2 dir, Plateau* p);
-		bool dead();
-		bool isAffame();
+		bool mort();
 		std::vector<Cible_t> EnVue(Plateau* p);
 		void afficherCible(std::vector<Cible_t> cibles);
 		void seReproduire(Plateau *p);

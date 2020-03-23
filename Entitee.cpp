@@ -3,8 +3,7 @@
 std::mt19937 generateur(666);
 
 Entitee::Entitee(int x, int y) :
-_posx(x),
-_posy(y)
+_pos(x, y)
 {}
 
 Entitee::~Entitee()
@@ -13,18 +12,23 @@ Entitee::~Entitee()
 void Entitee::Afficher()
 {}
 
-int Entitee::getPosx()
+int Entitee::getX()
 {
-    return _posx;
+    return _pos.getX();
 }
 
-int Entitee::getPosy()
+int Entitee::getY()
 {
-    return _posy;
+    return _pos.getY();
 }
 
 void Entitee::setPos(Vector2 pos)
 {
-    _posx = pos.getX();
-    _posy = pos.getY();
+    _pos.setX(pos.getX());
+    _pos.setY(pos.getY());
+}
+
+Vector2 Entitee::getVector()
+{
+    return _pos;
 }
