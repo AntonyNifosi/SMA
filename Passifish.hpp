@@ -9,10 +9,12 @@ class Passifish : public Agent
         Passifish();
         Passifish(int x, int y);
         // ~Passifish();
-		void update(Plateau* p);
 		bool Mort();
         void Afficher();
         std::string JeSuis();
+		Cible_t Selection(std::vector<Cible_t> cibles);
+        bool Tuable(Cible_t c, std::vector<Cible_t> cibles);
+        void Traitement(Cible_t c);
 };
 
 #endif

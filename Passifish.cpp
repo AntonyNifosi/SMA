@@ -23,10 +23,62 @@ bool Passifish::Mort()
     return _time_no_eat > 12;
 }
 
-void Passifish::update(Plateau* p)
+Cible_t Passifish::Selection(std::vector<Cible_t> cibles)
 {
-    int new_x = (generateur() % 2) * 2 - 1;
-    int new_y = (generateur() % 2) * 2 - 1;
+    std::vector<Cible_t>::iterator it;
 
-    Agent::move(Vector2(new_x, new_y), p);
+    Cible_t c;
+    c.distance = 9999;
+    c.cible = nullptr;
+    
+    for(it = cibles.begin(); it != cibles.end(); it++ )
+    {
+        if((*it).cible->JeSuis() == "Ressource")
+        {
+            if(c.distance > (*it).distance && (c.cible == nullptr || c.cible->JeSuis() == "Ressource"))
+            {
+                c = (*it);
+            }
+        }
+        else if ((*it).cible->JeSuis() == "Agressif")
+        {
+            if(Tuable((*it), cibles))
+            {
+                std::cout << "Go le tuer les potos" << std::endl;
+                c = (*it);
+            }
+        }
+    }
+
+    return c;
+}
+
+bool Passifish::Tuable(Cible_t c, std::vector<Cible_t> cibles)
+{
+    std::vector<Cible_t>::iterator it;
+
+    float avantage = 0;
+
+    for(it = cibles.begin(); it != cibles.end(); it++ )
+    {
+        int distance = c.cible->getVector().distance((*it).cible->getVector());
+        if(distance < 4 && distance > 0)
+        {
+            if((*it).cible->JeSuis() == "Agressif")
+            {
+                avantage -= 1 / (float)distance;
+            }
+            else if((*it).cible->JeSuis() == "Passifish")
+            {
+                avantage += 1 / (float)distance;
+            }
+        } 
+    }
+
+    return avantage >= 2;
+}
+
+void Passifish::Traitement(Cible_t c)
+{
+    
 }

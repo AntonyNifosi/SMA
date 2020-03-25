@@ -36,6 +36,8 @@ class Agent : public Entitee
 		std::vector<Cible_t> EnVue(Plateau* p);
 		void afficherCible(std::vector<Cible_t> cibles);
 		void seReproduire(Plateau *p);
+		virtual Cible_t Selection(std::vector<Cible_t> cibles) = 0;
+		virtual void Traitement(Cible_t c) = 0;
 };
 
 #endif

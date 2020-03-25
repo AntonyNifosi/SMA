@@ -11,12 +11,12 @@ class Agressif : public Agent
 		Agressif();
 		Agressif(int x, int y);
 		// ~Agressif();
-		void update(Plateau* p);
 		bool mort();
         void Afficher();
         std::string JeSuis();
 		Cible_t Selection(std::vector<Cible_t> cibles);
 		bool Affame();
+        void Traitement(Cible_t c);
 };
 
 #endif

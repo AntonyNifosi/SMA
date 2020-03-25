@@ -9,7 +9,7 @@
 
 int main()
 {
-    Plateau p("Config/Config1.txt");
+    Plateau p("Config/Config2.txt");
     std::cout << "=============== Tour 0 ===============" << std::endl;
     
     p.Afficher();

@@ -12,7 +12,6 @@ Plateau::Plateau()
 
 Plateau::Plateau(std::string nom)
 {
-    
     Reader *r = Reader::getInstance(nom);
     std::string config = r->readConfig();
     
@@ -20,7 +19,7 @@ Plateau::Plateau(std::string nom)
     {
         for (unsigned int j = 0; j < TAILLE_PLATEAU; j++)
         {
-            switch(config[i * TAILLE_PLATEAU + j])
+            switch(config[i * (TAILLE_PLATEAU + 2) + j])
             { 
                 case 'A':
                 {
@@ -207,12 +206,9 @@ Vector2 Plateau::PathFinding(Vector2 depart, Vector2 arrive)
                 {
                     if(j >= 0 && j <= TAILLE_PLATEAU && abs(i - location.getX()) + abs(j - location.getY()) == 1)
                     {
-                        if (_plateau[i][j] == nullptr || (i == arrive.getX() && j == arrive.getY()))
+                        if(_matrice[i][j] > _matrice[location.getX()][location.getY()])
                         {
-                            if(_matrice[i][j] > _matrice[location.getX()][location.getY()])
-                            {
-                                _matrice[i][j] = _matrice[location.getX()][location.getY()] + 1;
-                            }
+                            _matrice[i][j] = _matrice[location.getX()][location.getY()] + 1;
                         }
                     }
                 }
@@ -224,7 +220,6 @@ Vector2 Plateau::PathFinding(Vector2 depart, Vector2 arrive)
 
     Vector2 act(arrive.getX(), arrive.getY());
     Vector2 depl(0, 0);
-
 
 
     while(act != depart)
@@ -244,6 +239,27 @@ Vector2 Plateau::PathFinding(Vector2 depart, Vector2 arrive)
 
                             act.setX(i);
                             act.setY(j);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    if(_plateau[depart.getX() + depl.getX()][depart.getY() + depl.getY()] != nullptr)
+    {
+        for (int i = depart.getX() - 1; i <= depart.getX() + 1; i++)
+        {
+            if(i >= 0 && i <= TAILLE_PLATEAU)
+            {
+                for (int j = depart.getY() - 1; j <= depart.getY() + 1; j++)
+                {
+                    if(j >= 0 && j <= TAILLE_PLATEAU && abs(i - depart.getX()) + abs(j - depart.getY()) == 1)
+                    {
+                        if(_matrice[i][j] == 1 && _plateau[i][j] == nullptr)
+                        {
+                            depl.setX(act.getX() - i);
+                            depl.setY(act.getY() - j);
                         }
                     }
                 }
