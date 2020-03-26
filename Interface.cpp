@@ -2,7 +2,7 @@
 #include "Ressource.hpp"
 
 #define NB_TOURS 50
-#define NB_RESSOURCE_TOUR 2
+#define NB_RESSOURCE_TOUR 4
 
 #include <chrono>
 #include <thread>
@@ -20,6 +20,8 @@ int main()
 
         std::cout << "=============== Tour " << i + 1 << " ===============" << std::endl;
 
+        p.Update();
+
         for (int j = 0; j < NB_RESSOURCE_TOUR; j++)
         {
             int x, y;
@@ -31,8 +33,6 @@ int main()
 
             p.Ajouter(new Ressource(x, y), x, y);
         }
-
-        p.Update();
 
         p.Afficher();
     }

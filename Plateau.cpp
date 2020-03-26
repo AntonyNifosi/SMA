@@ -153,7 +153,7 @@ Vector2 Plateau::caseLibre(Entitee *e)
 
     for (int i = location.getX() - 1; i <= location.getX() + 1; i++)
     {
-        for (int j = location.getY() - 1; j <= location.getY() + 1; j++)
+        for (int j = location.getY() - 1 + i; j <= location.getY() + 1 - i; j += 2)
         {
             if (_plateau[i][j] == nullptr)
             {
@@ -200,16 +200,14 @@ Vector2 Plateau::PathFinding(Vector2 depart, Vector2 arrive)
 
         for (int i = location.getX() - 1; i <= location.getX() + 1; i++)
         {
-            if(i >= 0 && i <= TAILLE_PLATEAU)
+            int distX = abs(location.getX() - i);
+            for (int j = location.getY() - 1 + distX; j <= location.getY() + 1 - distX; j += 2)
             {
-                for (int j = location.getY() - 1; j <= location.getY() + 1; j++)
+                if(j >= 0 && j <= TAILLE_PLATEAU && i >= 0 && i <= TAILLE_PLATEAU)
                 {
-                    if(j >= 0 && j <= TAILLE_PLATEAU && abs(i - location.getX()) + abs(j - location.getY()) == 1)
+                    if(_matrice[i][j] > _matrice[location.getX()][location.getY()])
                     {
-                        if(_matrice[i][j] > _matrice[location.getX()][location.getY()])
-                        {
-                            _matrice[i][j] = _matrice[location.getX()][location.getY()] + 1;
-                        }
+                        _matrice[i][j] = _matrice[location.getX()][location.getY()] + 1;
                     }
                 }
             }
@@ -218,6 +216,14 @@ Vector2 Plateau::PathFinding(Vector2 depart, Vector2 arrive)
         _utilise[location.getX()][location.getY()] = 1;
     }
 
+    return Recup_Chemin(depart, arrive, _matrice);
+}
+
+Vector2 Plateau::Recup_Chemin(
+    Vector2 depart, 
+    Vector2 arrive, 
+    std::array<std::array<int, TAILLE_PLATEAU>, TAILLE_PLATEAU> _matrice)
+{
     Vector2 act(arrive.getX(), arrive.getY());
     Vector2 depl(0, 0);
 
@@ -226,41 +232,18 @@ Vector2 Plateau::PathFinding(Vector2 depart, Vector2 arrive)
     {
         for (int i = act.getX() - 1; i <= act.getX() + 1; i++)
         {
-            if(i >= 0 && i <= TAILLE_PLATEAU)
+            int distX = abs(act.getX() - i);
+            for (int j = act.getY() - 1 + distX; j <= act.getY() + 1 - distX; j += 2)
             {
-                for (int j = act.getY() - 1; j <= act.getY() + 1; j++)
+                if(j >= 0 && j <= TAILLE_PLATEAU && i >= 0 && i <= TAILLE_PLATEAU)
                 {
-                    if(j >= 0 && j <= TAILLE_PLATEAU && abs(i - act.getX()) + abs(j - act.getY()) == 1)
+                    if(_matrice[i][j] == _matrice[act.getX()][act.getY()] - 1)
                     {
-                        if(_matrice[i][j] == _matrice[act.getX()][act.getY()] - 1)
-                        {
-                            depl.setX(act.getX() - i);
-                            depl.setY(act.getY() - j);
+                        depl.setX(act.getX() - i);
+                        depl.setY(act.getY() - j);
 
-                            act.setX(i);
-                            act.setY(j);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    if(_plateau[depart.getX() + depl.getX()][depart.getY() + depl.getY()] != nullptr)
-    {
-        for (int i = depart.getX() - 1; i <= depart.getX() + 1; i++)
-        {
-            if(i >= 0 && i <= TAILLE_PLATEAU)
-            {
-                for (int j = depart.getY() - 1; j <= depart.getY() + 1; j++)
-                {
-                    if(j >= 0 && j <= TAILLE_PLATEAU && abs(i - depart.getX()) + abs(j - depart.getY()) == 1)
-                    {
-                        if(_matrice[i][j] == 1 && _plateau[i][j] == nullptr)
-                        {
-                            depl.setX(act.getX() - i);
-                            depl.setY(act.getY() - j);
-                        }
+                        act.setX(i);
+                        act.setY(j);
                     }
                 }
             }

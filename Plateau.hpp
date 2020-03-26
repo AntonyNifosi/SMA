@@ -33,6 +33,8 @@ class Plateau
         void Deplacer(Entitee* e, Vector2 v);
         Vector2 caseLibre(Entitee* e);
         Vector2 PathFinding(Vector2 depart, Vector2 arrive);
+        std::array<std::array<int, TAILLE_PLATEAU>, TAILLE_PLATEAU> CreerChemin(Vector2 depart, Vector2 arrive);
+        Vector2 Recup_Chemin(Vector2 depart, Vector2 arrive, std::array<std::array<int, TAILLE_PLATEAU>, TAILLE_PLATEAU> _matrice);
 };
 
 #endif

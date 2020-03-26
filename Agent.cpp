@@ -3,7 +3,7 @@
 #include "Entitee.hpp"
 
 Agent::Agent(int x, int y, int vision) : 
-Entitee(x, y), _vision(vision), direction(0 ,0)
+Entitee(x, y), _vision(vision)
 {}
 
 Agent::~Agent()
@@ -33,7 +33,7 @@ void Agent::update(Plateau* p)
 
         if(getVector().distance(c.cible->getVector()) == 1)
         {
-
+            Traitement(c);
         }
     }
     else
@@ -62,6 +62,7 @@ void Agent::update(Plateau* p)
                 
             }while (p->recupCase(_pos.getX() + new_x, _pos.getY() + new_y) != nullptr);
         }
+        
         move(Vector2(new_x, new_y), p);
     }
 }
@@ -70,6 +71,7 @@ void Agent::move(Vector2 dir, Plateau* p)
 {
     int newPosX = _pos.getX() + dir.getX();
     int newPosY = _pos.getY() + dir.getY();
+
     if(newPosX >= 0 && newPosX < TAILLE_PLATEAU && newPosY >= 0 && newPosY < TAILLE_PLATEAU)
     {
         if (p->recupCase(newPosX, newPosY) == nullptr)
@@ -83,12 +85,12 @@ std::vector<Cible_t> Agent::EnVue(Plateau* p)
 {
     std::vector<Cible_t> Cibles;
 
-    for(int i = _pos.getX() - _vision; i < _pos.getX() + _vision; i++)
+    for(int i = _pos.getX() - _vision; i <= _pos.getX() + _vision; i++)
     {
         if(i >= 0 && i < TAILLE_PLATEAU)
         {
             int distI = abs(_pos.getX() - i);
-            for(int j = _pos.getY() - _vision + distI; j < _pos.getY() + _vision - distI; j++)
+            for(int j = _pos.getY() - _vision + distI; j <= _pos.getY() + _vision - distI; j++)
             {
                 if( j >= 0 && j < TAILLE_PLATEAU && !(j == _pos.getY() && i == _pos.getX()))
                 {
@@ -129,12 +131,4 @@ void Agent::seReproduire(Plateau *p)
     {
         std::cout << "impossible de reproduire !" << std::endl;
     }
-}
-
-Cible_t Agent::Selection(std::vector<Cible_t> cibles)
-{
-    Cible_t c;
-    c.distance = 9999;
-
-    return c;
 }

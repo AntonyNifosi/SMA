@@ -25,7 +25,6 @@ class Agent : public Entitee
 		int _age;
 		int _time_no_eat;
 		int _vision;
-		Vector2 direction;
 
 	public :
 		Agent(int x, int y, int vision);
