@@ -16,7 +16,7 @@ class Agressif : public Agent
         std::string JeSuis();
 		Cible_t Selection(std::vector<Cible_t> cibles);
 		bool Affame();
-        void Traitement(Cible_t c);
+        void Traitement(Plateau *p, Cible_t c);
 };
 
 #endif

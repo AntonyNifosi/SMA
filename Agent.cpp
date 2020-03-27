@@ -31,9 +31,9 @@ void Agent::update(Plateau* p)
 
         move(depl, p);
 
-        if(getVector().distance(c.cible->getVector()) == 1)
+        if(c.distance == 1)
         {
-            Traitement(c);
+            Traitement(p, c);
         }
     }
     else
@@ -125,10 +125,19 @@ void Agent::seReproduire(Plateau *p)
     Vector2 location = p->caseLibre(this);
     if (location.isValidPosition())
     {
-        p->createAgent(AGRESSIF, location);
+        if (JeSuis() == "Agressif")
+            p->createAgent(AGRESSIF, location);
+        else
+            p->createAgent(PASSIFISH, location);
     }
     else
     {
-        std::cout << "impossible de reproduire !" << std::endl;
+        std::cout << "\e[31m impossible de reproduire !  \e[0m" << std::endl; 
     }
+}
+
+void Agent::manger(Plateau *p, Entitee *e)
+{
+    _time_no_eat = 0;
+    p->Delete(e);
 }

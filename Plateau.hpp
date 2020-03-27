@@ -28,7 +28,7 @@ class Plateau
         void Ajouter(Entitee* e, int x, int y);
         void createAgent(AgentType type, Vector2 position);
         void Ajouter(Agent* e, int x, int y);
-        void Delete(int x, int y);
+        void Delete(Entitee *e);
         Entitee* recupCase(int x, int y);
         void Deplacer(Entitee* e, Vector2 v);
         Vector2 caseLibre(Entitee* e);

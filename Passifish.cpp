@@ -1,5 +1,6 @@
 #include "Agent.hpp"
 #include "Passifish.hpp"
+#include "Plateau.hpp"
 
 Passifish::Passifish() : Agent(0 , 0, 6)
 {}
@@ -78,7 +79,17 @@ bool Passifish::Tuable(Cible_t c, std::vector<Cible_t> cibles)
     return avantage >= 2;
 }
 
-void Passifish::Traitement(Cible_t c)
+void Passifish::Traitement(Plateau *p, Cible_t c)
 {
+    if (c.cible->JeSuis() == "Agressif")
+    {
+        p->Delete(c.cible);
+    }
+    else
+    {
+        Agent::manger(p, c.cible); 
+        Agent::seReproduire(p);
+        Agent::seReproduire(p);
+    }
     
 }

@@ -29,9 +29,10 @@ Cible_t Agressif::Selection(std::vector<Cible_t> cibles)
     return c;
 }
 
-void Agressif::Traitement(Cible_t c)
+void Agressif::Traitement(Plateau *p, Cible_t c)
 {
-    
+    Agent::manger(p, c.cible);
+    Agent::seReproduire(p);
 }
 
 void Agressif::Afficher()

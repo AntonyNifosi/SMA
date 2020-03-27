@@ -123,9 +123,32 @@ void Plateau::Ajouter(Agent* e, int x, int y)
     _agents.push_back(e);
 }
 
-void Plateau::Delete(int x, int y)
+void Plateau::Delete(Entitee *e)
 {
-
+    for (int i = 0; i < TAILLE_PLATEAU; i++)
+    {
+        for (int j = 0; j < TAILLE_PLATEAU; j++)
+        {
+            if (_plateau[i][j] == e)
+            {
+                _plateau[i][j] = nullptr;
+            }
+        }
+    }
+    if (e->JeSuis() != "Ressource")
+    {
+        if (e != nullptr)
+        {
+            for(int i = 0; i < _agents.size(); i++)
+            {
+                if (_agents[i] == e)
+                {
+                    _agents.erase(_agents.begin() + i);
+                }
+            }
+        } 
+    }
+    delete(e);
 }
 
 Entitee* Plateau::recupCase(int x, int y)
@@ -149,13 +172,14 @@ void Plateau::Deplacer(Entitee* e, Vector2 v)
 
 Vector2 Plateau::caseLibre(Entitee *e)
 {
-    Vector2 location (e->getX(), e->getY());
+    Vector2 location (e->getVector());
 
     for (int i = location.getX() - 1; i <= location.getX() + 1; i++)
     {
-        for (int j = location.getY() - 1 + i; j <= location.getY() + 1 - i; j += 2)
+        int distX = abs(location.getX() - i);
+        for (int j = location.getY() - 1 + distX; j <= location.getY() + 1 - distX; j += 2)
         {
-            if (_plateau[i][j] == nullptr)
+            if (i >= 0 && i < TAILLE_PLATEAU && j >= 0 && j < TAILLE_PLATEAU && _plateau[i][j] == nullptr)
             {
                 return Vector2(i, j);
             }
