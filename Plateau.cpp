@@ -81,11 +81,15 @@ void Plateau::Afficher()
 void Plateau::Update()
 {
     std::cout << "Update du plateau taille vecteur agent : " << _agents.size() <<  std::endl;
-    std::vector<Agent*>::iterator it;
-    for(it = _agents.begin(); it != _agents.end(); it++)
+    std::vector<Agent*>::iterator it = _agents.begin();
+    while(*it != nullptr && it != _agents.end())
     {
-        (*it)->update(this);
+        std::cout << "On va update : " << std::endl;
+       (*it)->update(this);
+        it++;
     }
+
+    std::cout << "Fin update" << std::endl;
 }
 
 void Plateau::Ajouter(Entitee* e, int x, int y)
