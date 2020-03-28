@@ -38,7 +38,11 @@ void Agressif::Traitement(Plateau *p, Cible_t c)
     Agent::manger(p, c.cible);
     if(cible != "Agressif")
     {
-        Agent::seReproduire(p);
+        reprod = (reprod + 1) % 2;
+        if(reprod == 0)
+        {
+            Agent::seReproduire(p);
+        }
     }
 }
 

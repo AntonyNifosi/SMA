@@ -64,6 +64,26 @@ Plateau::~Plateau()
 
 void Plateau::Afficher()
 {
+    int nbAgressif = 0;
+    int nbPassifish = 0;
+
+    std::vector<Agent*>::iterator it;
+
+    for(it = _agents.begin(); it != _agents.end(); it++)
+    {
+        if((*it)->JeSuis() == "Agressif")
+        {
+            nbAgressif++;
+        }
+        else
+        {
+            nbPassifish++;
+        }
+    }
+
+    std::cout << "Nombre d'agressif : " << nbAgressif << std::endl;
+    std::cout << "Nombre de Passifish : " << nbPassifish << std::endl;
+
     for(int i = 0; i < TAILLE_PLATEAU; i++)
     {
         for (int j = 0; j < TAILLE_PLATEAU; j++)
@@ -80,30 +100,39 @@ void Plateau::Afficher()
 
 void Plateau::Update()
 {
-    std::cout << "Update du plateau taille vecteur agent : " << _agents.size() <<  std::endl;
 
-    std::vector <Agent*> _agentsCur = _agents;
+    _agentsCur = _agents;
 
     std::vector<Agent*>::iterator it = _agentsCur.begin();
     while(it != _agentsCur.end())
     {
-        try
+        if((*it)->isAvailable())
         {
             (*it)->update(this);
-                    
+
             if((*it)->mort())
             {
                 Delete((*it));
             }
-            it++;
         }
-        catch(const std::exception& e)
-        {
-            std::cerr << e.what() << '\n';
-        }
+        it++;
     }
 
-    std::cout << "Fin update" << std::endl;
+    FreeDead();
+}
+
+void Plateau::FreeDead()
+{
+    std::vector<Agent*>::iterator it = _agents.begin();
+
+    while((*it) != nullptr && it !=  _agents.end())
+    {
+        if(!(*it)->isAvailable())
+        {
+            _agents.erase(it);
+        }
+        it++;
+    }
 }
 
 void Plateau::Ajouter(Entitee* e, int x, int y)
@@ -155,18 +184,8 @@ void Plateau::Delete(Entitee *e)
     }
     if (e->JeSuis() != "Ressource")
     {
-        if (e != nullptr)
-        {
-            for(unsigned int i = 0; i < _agents.size(); i++)
-            {
-                if (_agents[i] == e)
-                {
-                    _agents.erase(_agents.begin() + i);
-                }
-            }
-        } 
+        e->setAvailable(false);
     }
-    delete(e);
 }
 
 Entitee* Plateau::recupCase(int x, int y)
@@ -226,7 +245,6 @@ Vector2 Plateau::PathFinding(Vector2 depart, Vector2 arrive)
     {
         Vector2 location(0, 0);
         int dist = 9999;
-
         for (unsigned int i = 0; i < TAILLE_PLATEAU; i++)
         {
             for (unsigned int j = 0; j < TAILLE_PLATEAU; j++)
@@ -245,7 +263,7 @@ Vector2 Plateau::PathFinding(Vector2 depart, Vector2 arrive)
             int distX = abs(location.getX() - i);
             for (int j = location.getY() - 1 + distX; j <= location.getY() + 1 - distX; j += 2)
             {
-                if(j >= 0 && j <= TAILLE_PLATEAU && i >= 0 && i <= TAILLE_PLATEAU)
+                if(j >= 0 && j < TAILLE_PLATEAU && i >= 0 && i < TAILLE_PLATEAU)
                 {
                     if(_matrice[i][j] > _matrice[location.getX()][location.getY()])
                     {
@@ -269,7 +287,6 @@ Vector2 Plateau::Recup_Chemin(
     Vector2 act(arrive.getX(), arrive.getY());
     Vector2 depl(0, 0);
 
-
     while(act != depart)
     {
         for (int i = act.getX() - 1; i <= act.getX() + 1; i++)
@@ -277,7 +294,7 @@ Vector2 Plateau::Recup_Chemin(
             int distX = abs(act.getX() - i);
             for (int j = act.getY() - 1 + distX; j <= act.getY() + 1 - distX; j += 2)
             {
-                if(j >= 0 && j <= TAILLE_PLATEAU && i >= 0 && i <= TAILLE_PLATEAU)
+                if(j >= 0 && j < TAILLE_PLATEAU && i >= 0 && i < TAILLE_PLATEAU)
                 {
                     if(_matrice[i][j] == _matrice[act.getX()][act.getY()] - 1)
                     {

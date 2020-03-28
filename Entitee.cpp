@@ -32,3 +32,13 @@ Vector2 Entitee::getVector()
 {
     return _pos;
 }
+
+bool Entitee::isAvailable()
+{
+    return _available;
+}
+
+void Entitee::setAvailable(bool available)
+{
+    _available = available;
+}

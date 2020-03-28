@@ -13,6 +13,7 @@ class Entitee
 {
     protected:
         Vector2 _pos;
+		bool _available = true;
 
     public:
         Entitee(int x, int y);
@@ -23,6 +24,8 @@ class Entitee
         virtual void Afficher() = 0;
         virtual std::string JeSuis() = 0;
         Vector2 getVector();
+        bool isAvailable();
+        void setAvailable(bool available);
 };
 
 #endif

@@ -3,7 +3,7 @@
 #include "Entitee.hpp"
 
 Agent::Agent(int x, int y, int vision) : 
-Entitee(x, y), _vision(vision)
+Entitee(x, y), _age(0), _time_no_eat(0), _vision(vision)
 {}
 
 Agent::~Agent()
@@ -11,7 +11,6 @@ Agent::~Agent()
 
 void Agent::update(Plateau* p)
 {
-    std::cout << "Debut traitement de " << JeSuis() << std::endl;
     std::vector<Cible_t> cibles = EnVue(p);
 
     _age++;
@@ -19,17 +18,10 @@ void Agent::update(Plateau* p)
 
     Cible_t c = Selection(cibles);
 
-
     if(c.distance != 9999)
     {
-        std::cout << JeSuis() << " en " << _pos.getX() << " " << _pos.getY() << " a selectionné : " << c.cible->JeSuis() << std::endl;
-        std::cout << "Distance : " << c.distance << std::endl ;
-        std::cout << "Position : " << c.cible->getX() << " " << c.cible->getY() << std::endl;
-
         Vector2 depl = p->PathFinding(_pos, c.cible->getVector());
-
-        std::cout << "Deplacement à effectué : " << depl.getX() << " " << depl.getY() << std::endl;
-
+        
         move(depl, p);
 
         if(c.distance == 1)
@@ -38,9 +30,7 @@ void Agent::update(Plateau* p)
         }
     }
     else
-    {   
-        std::cout << JeSuis() << " en " << _pos.getX() << " " << _pos.getY() << " a selectionné : rien" << std::endl;
-        
+    {  
         int new_x = 0, new_y = 0;
 
         if(!(p->recupCase(_pos.getX() + 1, _pos.getY()) != nullptr && 
@@ -66,7 +56,6 @@ void Agent::update(Plateau* p)
         
         move(Vector2(new_x, new_y), p);
     }
-    std::cout << "Fin de traitement du " << JeSuis() << std::endl;
 }
 
 void Agent::move(Vector2 dir, Plateau* p)
@@ -131,10 +120,6 @@ void Agent::seReproduire(Plateau *p)
             p->createAgent(AGRESSIF, location);
         else
             p->createAgent(PASSIFISH, location);
-    }
-    else
-    {
-        std::cout << "\e[31m impossible de reproduire !  \e[0m" << std::endl; 
     }
 }
 

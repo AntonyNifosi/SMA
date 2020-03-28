@@ -6,7 +6,7 @@
 class Agressif : public Agent
 {
 	private :
-
+		int reprod = 0;
 	public :
 		Agressif();
 		Agressif(int x, int y);
