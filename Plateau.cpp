@@ -81,20 +81,26 @@ void Plateau::Afficher()
 void Plateau::Update()
 {
     std::cout << "Update du plateau taille vecteur agent : " << _agents.size() <<  std::endl;
-<<<<<<< HEAD
 
     std::vector <Agent*> _agentsCur = _agents;
 
     std::vector<Agent*>::iterator it = _agentsCur.begin();
     while(it != _agentsCur.end())
     {
-        (*it)->update(this);
-                
-        if((*it)->mort())
+        try
         {
-            Delete((*it));
+            (*it)->update(this);
+                    
+            if((*it)->mort())
+            {
+                Delete((*it));
+            }
+            it++;
         }
-        it++;
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+        }
     }
 
     std::cout << "Fin update" << std::endl;
