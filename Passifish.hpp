@@ -8,8 +8,8 @@ class Passifish : public Agent
     public:
         Passifish();
         Passifish(int x, int y);
-        // ~Passifish();
-		bool Mort();
+        ~Passifish();
+		bool mort();
         void Afficher();
         std::string JeSuis();
 		Cible_t Selection(std::vector<Cible_t> cibles);

@@ -17,7 +17,6 @@ int main()
     for(int i = 0; i < NB_TOURS; i++)
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(4000));
-        system("clear");
         std::cout << "=============== Tour " << i + 1 << " ===============" << std::endl;
 
         p.Update();

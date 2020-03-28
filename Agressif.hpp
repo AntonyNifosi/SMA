@@ -10,7 +10,7 @@ class Agressif : public Agent
 	public :
 		Agressif();
 		Agressif(int x, int y);
-		// ~Agressif();
+		~Agressif();
 		bool mort();
         void Afficher();
         std::string JeSuis();

@@ -11,6 +11,7 @@ Agent::~Agent()
 
 void Agent::update(Plateau* p)
 {
+    std::cout << "Debut traitement de " << JeSuis() << std::endl;
     std::vector<Cible_t> cibles = EnVue(p);
 
     _age++;
@@ -32,8 +33,8 @@ void Agent::update(Plateau* p)
         move(depl, p);
 
         if(c.distance == 1)
-        {
-            Traitement(p, c);
+        {  
+            Traitement(p, c); 
         }
     }
     else
@@ -65,6 +66,7 @@ void Agent::update(Plateau* p)
         
         move(Vector2(new_x, new_y), p);
     }
+    std::cout << "Fin de traitement du " << JeSuis() << std::endl;
 }
 
 void Agent::move(Vector2 dir, Plateau* p)

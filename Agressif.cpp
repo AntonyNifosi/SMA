@@ -8,6 +8,9 @@ Agressif::Agressif(int x, int y):
 Agent(x, y, 4)
 {}
 
+Agressif::~Agressif()
+{}
+
 Cible_t Agressif::Selection(std::vector<Cible_t> cibles)
 {
     std::vector<Cible_t>::iterator it;
@@ -31,8 +34,12 @@ Cible_t Agressif::Selection(std::vector<Cible_t> cibles)
 
 void Agressif::Traitement(Plateau *p, Cible_t c)
 {
+    std::string cible = c.cible->JeSuis();
     Agent::manger(p, c.cible);
-    Agent::seReproduire(p);
+    if(cible != "Agressif")
+    {
+        Agent::seReproduire(p);
+    }
 }
 
 void Agressif::Afficher()

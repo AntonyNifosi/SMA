@@ -31,11 +31,11 @@ class Agent : public Entitee
 		~Agent();
 		virtual void update(Plateau* p);
 		void move(Vector2 dir, Plateau* p);
-		bool mort();
 		std::vector<Cible_t> EnVue(Plateau* p);
 		void afficherCible(std::vector<Cible_t> cibles);
 		void seReproduire(Plateau *p);
 		void manger(Plateau *p, Entitee *e);
+		virtual bool mort() = 0;
 		virtual Cible_t Selection(std::vector<Cible_t> cibles) = 0;
 		virtual void Traitement(Plateau *p, Cible_t c) = 0;
 };

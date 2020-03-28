@@ -17,6 +17,7 @@ class Plateau
     private:
         std::array<std::array<Entitee*, TAILLE_PLATEAU>, TAILLE_PLATEAU> _plateau;
         std::vector <Agent*> _agents;
+        std::vector <Agent*> _agentsCur;
         Factory f;
 
     public:

@@ -9,6 +9,9 @@ Passifish::Passifish(int x, int y) :
 Agent(x, y, 6)
 {}
 
+Passifish::~Passifish()
+{}
+
 void Passifish::Afficher()
 {
     std::cout << " P ";
@@ -19,7 +22,7 @@ std::string Passifish::JeSuis()
     return "Passifish";
 }
 
-bool Passifish::Mort()
+bool Passifish::mort()
 {
     return _time_no_eat > 12;
 }
@@ -45,7 +48,6 @@ Cible_t Passifish::Selection(std::vector<Cible_t> cibles)
         {
             if(Tuable((*it), cibles))
             {
-                std::cout << "Go le tuer les potos" << std::endl;
                 c = (*it);
             }
         }
@@ -81,6 +83,7 @@ bool Passifish::Tuable(Cible_t c, std::vector<Cible_t> cibles)
 
 void Passifish::Traitement(Plateau *p, Cible_t c)
 {
+    std::cout << "debut traitement" << std::endl;
     if (c.cible->JeSuis() == "Agressif")
     {
         p->Delete(c.cible);
@@ -91,5 +94,5 @@ void Passifish::Traitement(Plateau *p, Cible_t c)
         Agent::seReproduire(p);
         Agent::seReproduire(p);
     }
-    
+    std::cout << "fin traitement" << std::endl;
 }
