@@ -48,6 +48,7 @@ Plateau::Plateau(std::string nom)
         }
     }
     std::cout << "Plateau INIT --> OK !" << std::endl;
+    delete(r);
 }
 
 Plateau::~Plateau()
@@ -59,6 +60,7 @@ Plateau::~Plateau()
             if(_plateau[i][j])
                 delete _plateau[i][j];    
         }
+        std::cout << "Test" << std::endl;
     }
 }
 
@@ -186,6 +188,11 @@ void Plateau::Delete(Entitee *e)
     {
         e->setAvailable(false);
     }
+    else
+    {
+        delete(e);
+    }
+    
 }
 
 Entitee* Plateau::recupCase(int x, int y)
