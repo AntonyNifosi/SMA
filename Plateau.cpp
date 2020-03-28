@@ -82,7 +82,7 @@ void Plateau::Update()
 {
     std::cout << "Update du plateau taille vecteur agent : " << _agents.size() <<  std::endl;
 
-    _agentsCur = _agents;
+    std::vector <Agent*> _agentsCur = _agents;
 
     std::vector<Agent*>::iterator it = _agentsCur.begin();
     while(it != _agentsCur.end())
@@ -153,14 +153,6 @@ void Plateau::Delete(Entitee *e)
                 if (_agents[i] == e)
                 {
                     _agents.erase(_agents.begin() + i);
-                }
-            }
-
-            for(unsigned int i = 0; i < _agentsCur.size(); i++)
-            {
-                if (_agentsCur[i] == e)
-                {
-                    _agentsCur.erase(_agentsCur.begin() + i);
                 }
             }
         } 

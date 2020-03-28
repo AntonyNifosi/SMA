@@ -83,7 +83,6 @@ bool Passifish::Tuable(Cible_t c, std::vector<Cible_t> cibles)
 
 void Passifish::Traitement(Plateau *p, Cible_t c)
 {
-    std::cout << "debut traitement" << std::endl;
     if (c.cible->JeSuis() == "Agressif")
     {
         p->Delete(c.cible);
@@ -94,5 +93,4 @@ void Passifish::Traitement(Plateau *p, Cible_t c)
         Agent::seReproduire(p);
         Agent::seReproduire(p);
     }
-    std::cout << "fin traitement" << std::endl;
 }
