@@ -81,6 +81,7 @@ void Plateau::Afficher()
 void Plateau::Update()
 {
     std::cout << "Update du plateau taille vecteur agent : " << _agents.size() <<  std::endl;
+<<<<<<< HEAD
 
     std::vector <Agent*> _agentsCur = _agents;
 
@@ -95,6 +96,8 @@ void Plateau::Update()
         }
         it++;
     }
+
+    std::cout << "Fin update" << std::endl;
 }
 
 void Plateau::Ajouter(Entitee* e, int x, int y)
