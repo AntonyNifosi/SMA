@@ -1,7 +1,7 @@
 #include "Plateau.hpp"
 #include "Ressource.hpp"
 
-#define NB_TOURS 50
+#define NB_TOURS 200
 #define NB_RESSOURCE_TOUR 4
 
 #include <chrono>
@@ -16,7 +16,7 @@ int main()
     
     for(int i = 0; i < NB_TOURS; i++)
     {
-        std::this_thread::sleep_for(std::chrono::milliseconds(200));
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
         std::cout << "=============== Tour " << i + 1 << " ===============" << std::endl;
 
         p.Update();

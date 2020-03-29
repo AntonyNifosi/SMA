@@ -113,12 +113,11 @@ void Plateau::Update()
 
             if((*it)->mort())
             {
-                Delete((*it));
+               Delete((*it));
             }
         }
         it++;
     }
-
     FreeDead();
 }
 
@@ -126,13 +125,18 @@ void Plateau::FreeDead()
 {
     std::vector<Agent*>::iterator it = _agents.begin();
 
+
+    
     while(it !=  _agents.end())
     {
         if((*it) != nullptr && !(*it)->isAvailable())
         {
             _agents.erase(it);
         }
-        it++;
+        else
+        {
+            it++;
+        }
     }
 }
 
@@ -190,7 +194,7 @@ void Plateau::Delete(Entitee *e)
     {
         e->setAvailable(false);
     }
-    else
+    else if (e->JeSuis() == RESSOURCE)
     {
         delete(e);
     }
