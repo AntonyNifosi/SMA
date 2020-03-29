@@ -20,7 +20,7 @@ Cible_t Agressif::Selection(std::vector<Cible_t> cibles)
     
     for(it = cibles.begin(); it != cibles.end(); it++ )
     {
-        if((*it).cible->JeSuis() != "Agressif" || Affame())
+        if((*it).cible->JeSuis() != AGRESSIF || Affame())
         {
             if(c.distance > (*it).distance)
             {
@@ -34,9 +34,9 @@ Cible_t Agressif::Selection(std::vector<Cible_t> cibles)
 
 void Agressif::Traitement(Plateau *p, Cible_t c)
 {
-    std::string cible = c.cible->JeSuis();
+    EntiteeType cible = c.cible->JeSuis();
     Agent::manger(p, c.cible);
-    if(cible != "Agressif")
+    if(cible != AGRESSIF)
     {
         reprod = (reprod + 1) % 2;
         if(reprod == 0)
@@ -56,9 +56,9 @@ bool Agressif::Affame()
     return _time_no_eat > 5;
 }
 
-std::string Agressif::JeSuis()
+EntiteeType Agressif::JeSuis()
 {
-    return "Agressif";
+    return AGRESSIF;
 }
 
 bool Agressif::mort()

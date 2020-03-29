@@ -8,11 +8,6 @@
 
 class Plateau;
 
-enum AgentType
-{
-	AGRESSIF, PASSIFISH
-};
-
 typedef struct Cible
 {
 	Entitee* cible;

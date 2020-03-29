@@ -13,7 +13,7 @@ class Agressif : public Agent
 		~Agressif();
 		bool mort();
         void Afficher();
-        std::string JeSuis();
+        EntiteeType JeSuis();
 		Cible_t Selection(std::vector<Cible_t> cibles);
 		bool Affame();
         void Traitement(Plateau *p, Cible_t c);

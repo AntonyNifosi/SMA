@@ -116,7 +116,7 @@ void Agent::seReproduire(Plateau *p)
     Vector2 location = p->caseLibre(this);
     if (location.isValidPosition())
     {
-        if (JeSuis() == "Agressif")
+        if (JeSuis() == AGRESSIF)
             p->createAgent(AGRESSIF, location);
         else
             p->createAgent(PASSIFISH, location);

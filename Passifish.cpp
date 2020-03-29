@@ -2,7 +2,7 @@
 #include "Passifish.hpp"
 #include "Plateau.hpp"
 
-Passifish::Passifish() : Agent(0 , 0, 6)
+Passifish::Passifish() : Agent(0, 0, 6)
 {}
 
 Passifish::Passifish(int x, int y) :
@@ -17,9 +17,9 @@ void Passifish::Afficher()
     std::cout << " P ";
 }
 
-std::string Passifish::JeSuis()
+EntiteeType Passifish::JeSuis()
 {
-    return "Passifish";
+    return PASSIFISH;
 }
 
 bool Passifish::mort()
@@ -37,14 +37,14 @@ Cible_t Passifish::Selection(std::vector<Cible_t> cibles)
     
     for(it = cibles.begin(); it != cibles.end(); it++ )
     {
-        if((*it).cible->JeSuis() == "Ressource")
+        if((*it).cible->JeSuis() == RESSOURCE)
         {
-            if(c.distance > (*it).distance && (c.cible == nullptr || c.cible->JeSuis() == "Ressource"))
+            if(c.distance > (*it).distance && (c.cible == nullptr || c.cible->JeSuis() == RESSOURCE))
             {
                 c = (*it);
             }
         }
-        else if ((*it).cible->JeSuis() == "Agressif")
+        else if ((*it).cible->JeSuis() == AGRESSIF)
         {
             if(Tuable((*it), cibles))
             {
@@ -67,11 +67,11 @@ bool Passifish::Tuable(Cible_t c, std::vector<Cible_t> cibles)
         int distance = c.cible->getVector().distance((*it).cible->getVector());
         if(distance < 4 && distance > 0)
         {
-            if((*it).cible->JeSuis() == "Agressif")
+            if((*it).cible->JeSuis() == AGRESSIF)
             {
                 avantage -= 1 / (float)distance;
             }
-            else if((*it).cible->JeSuis() == "Passifish")
+            else if((*it).cible->JeSuis() == PASSIFISH)
             {
                 avantage += 1 / (float)distance;
             }
@@ -83,7 +83,7 @@ bool Passifish::Tuable(Cible_t c, std::vector<Cible_t> cibles)
 
 void Passifish::Traitement(Plateau *p, Cible_t c)
 {
-    if (c.cible->JeSuis() == "Agressif")
+    if (c.cible->JeSuis() == AGRESSIF)
     {
         p->Delete(c.cible);
     }

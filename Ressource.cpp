@@ -17,7 +17,7 @@ void Ressource::Afficher()
     std::cout << " R ";
 }
 
-std::string Ressource::JeSuis()
+EntiteeType Ressource::JeSuis()
 {
-    return "Ressource";
+    return RESSOURCE;
 }

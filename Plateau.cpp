@@ -60,7 +60,6 @@ Plateau::~Plateau()
             if(_plateau[i][j])
                 delete _plateau[i][j];    
         }
-        std::cout << "Test" << std::endl;
     }
 }
 
@@ -73,7 +72,7 @@ void Plateau::Afficher()
 
     for(it = _agents.begin(); it != _agents.end(); it++)
     {
-        if((*it)->JeSuis() == "Agressif")
+        if((*it)->JeSuis() == AGRESSIF)
         {
             nbAgressif++;
         }
@@ -127,9 +126,9 @@ void Plateau::FreeDead()
 {
     std::vector<Agent*>::iterator it = _agents.begin();
 
-    while((*it) != nullptr && it !=  _agents.end())
+    while(it !=  _agents.end())
     {
-        if(!(*it)->isAvailable())
+        if((*it) != nullptr && !(*it)->isAvailable())
         {
             _agents.erase(it);
         }
@@ -142,7 +141,7 @@ void Plateau::Ajouter(Entitee* e, int x, int y)
     _plateau[x][y] = e;
 }
 
-void Plateau::createAgent(AgentType type, Vector2 position)
+void Plateau::createAgent(EntiteeType type, Vector2 position)
 {
     switch (type)
     {
@@ -162,6 +161,9 @@ void Plateau::createAgent(AgentType type, Vector2 position)
             p->setPos(position);
             _agents.push_back(p);
         }  
+        break;
+
+        default:
         break;
     }
 }
@@ -184,7 +186,7 @@ void Plateau::Delete(Entitee *e)
             }
         }
     }
-    if (e->JeSuis() != "Ressource")
+    if (e->JeSuis() != RESSOURCE)
     {
         e->setAvailable(false);
     }
@@ -192,7 +194,6 @@ void Plateau::Delete(Entitee *e)
     {
         delete(e);
     }
-    
 }
 
 Entitee* Plateau::recupCase(int x, int y)
@@ -248,6 +249,8 @@ Vector2 Plateau::PathFinding(Vector2 depart, Vector2 arrive)
 
     _matrice[depart.getX()][depart.getY()] = 0;
 
+    int ite = 0;
+
     while(_matrice[arrive.getX()][arrive.getY()] == 9999)
     {
         Vector2 location(0, 0);
@@ -272,7 +275,7 @@ Vector2 Plateau::PathFinding(Vector2 depart, Vector2 arrive)
             {
                 if(j >= 0 && j < TAILLE_PLATEAU && i >= 0 && i < TAILLE_PLATEAU)
                 {
-                    if(_matrice[i][j] > _matrice[location.getX()][location.getY()])
+                    if(_matrice[i][j] > _matrice[location.getX()][location.getY()] && (_plateau[i][j] == nullptr || (i == arrive.getX() && j == arrive.getY())))
                     {
                         _matrice[i][j] = _matrice[location.getX()][location.getY()] + 1;
                     }
@@ -281,6 +284,12 @@ Vector2 Plateau::PathFinding(Vector2 depart, Vector2 arrive)
         }
 
         _utilise[location.getX()][location.getY()] = 1;
+
+        ite++;
+        if(ite > 100)
+        {
+            return Vector2(0, 0);
+        }
     }
 
     return Recup_Chemin(depart, arrive, _matrice);

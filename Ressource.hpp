@@ -10,7 +10,7 @@ class Ressource : public Entitee
         Ressource(int x, int y);
         ~Ressource();
         void Afficher();
-        std::string JeSuis();
+        EntiteeType JeSuis();
 };
 
 #endif

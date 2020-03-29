@@ -11,7 +11,7 @@ class Passifish : public Agent
         ~Passifish();
 		bool mort();
         void Afficher();
-        std::string JeSuis();
+        EntiteeType JeSuis();
 		Cible_t Selection(std::vector<Cible_t> cibles);
         bool Tuable(Cible_t c, std::vector<Cible_t> cibles);
         void Traitement(Plateau *p, Cible_t c);
