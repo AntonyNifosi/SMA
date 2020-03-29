@@ -33,10 +33,21 @@ void Agent::update(Plateau* p)
     {  
         int new_x = 0, new_y = 0;
 
-        if(!(p->recupCase(_pos.getX() + 1, _pos.getY()) != nullptr && 
-             p->recupCase(_pos.getX() - 1, _pos.getY()) != nullptr &&
-             p->recupCase(_pos.getX(), _pos.getY() + 1) != nullptr &&
-             p->recupCase(_pos.getX(), _pos.getY() - 1) != nullptr))
+        bool case_vide = false;
+
+        for (int i = _pos.getX() - 1; i <= _pos.getX() + 1; i++)
+        {
+            int distX = abs(_pos.getX() - i);
+            for (int j = _pos.getY() - 1 + distX; j <= _pos.getY() + 1 - distX; j += 2)
+            {
+                if(i >= 0 && i < TAILLE_PLATEAU && j >= 0 && j < TAILLE_PLATEAU && p->recupCase(i, j) == nullptr)
+                {
+                    case_vide = true;
+                }
+            }
+        }
+
+        if(case_vide)
         {
             do
             {
@@ -50,8 +61,10 @@ void Agent::update(Plateau* p)
                     new_x = 0;
                     new_y = (generateur() % 2) * 2 - 1;
                 }
-                
-            }while (p->recupCase(_pos.getX() + new_x, _pos.getY() + new_y) != nullptr);
+            }while (
+                _pos.getX() + new_x < 0 || _pos.getX() + new_x >= TAILLE_PLATEAU ||
+                _pos.getY() + new_y < 0 || _pos.getY() + new_y >= TAILLE_PLATEAU ||
+                p->recupCase(_pos.getX() + new_x, _pos.getY() + new_y) != nullptr);
         }
         
         move(Vector2(new_x, new_y), p);

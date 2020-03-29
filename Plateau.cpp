@@ -101,7 +101,6 @@ void Plateau::Afficher()
 
 void Plateau::Update()
 {
-
     _agentsCur = _agents;
 
     std::vector<Agent*>::iterator it = _agentsCur.begin();
@@ -124,14 +123,14 @@ void Plateau::Update()
 void Plateau::FreeDead()
 {
     std::vector<Agent*>::iterator it = _agents.begin();
-
-
     
     while(it !=  _agents.end())
     {
         if((*it) != nullptr && !(*it)->isAvailable())
         {
+            Agent* a = (*it);
             _agents.erase(it);
+            delete(a);
         }
         else
         {
@@ -330,4 +329,30 @@ Vector2 Plateau::Recup_Chemin(
     }
 
     return depl;
+}
+
+void Plateau::SpawnRessource()
+{   
+    bool libre = false;
+    for(int i = 0; i < TAILLE_PLATEAU; i++)
+    {
+        for(int j = 0; j < TAILLE_PLATEAU; j++)
+        {
+            if(_plateau[i][j] == nullptr)
+            {
+                libre = true;
+            }
+        }
+    }
+    if(libre)
+    {
+        int x, y;
+        do
+        {
+            x = generateur() % 20;
+            y = generateur() % 20;
+        } while (recupCase(x, y) != nullptr);
+
+        Ajouter(new Ressource(x, y), x, y);
+    }
 }
