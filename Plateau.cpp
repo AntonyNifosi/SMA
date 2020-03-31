@@ -8,6 +8,33 @@
 
 Plateau::Plateau()
 {
+    for (unsigned int i = 0; i < TAILLE_PLATEAU; i++)
+    {
+        for (unsigned int j = 0; j < TAILLE_PLATEAU; j++)
+        {
+            float a = generateur() % 100;
+
+            if(a < 3)
+            {
+                createAgent(AGRESSIF, Vector2(i, j));
+            }
+            else if (a < 6)
+            {
+                createAgent(PASSIFISH, Vector2(i, j));
+            }
+            else if (a < 12)
+            {
+                Ressource* r = f.createRessource();
+                _plateau[i][j] = r;
+                r->setPos(Vector2(i, j));
+            }
+            else
+            {
+                _plateau[i][j] = nullptr;
+            }
+            
+        }
+    }
 }
 
 Plateau::Plateau(std::string nom)
