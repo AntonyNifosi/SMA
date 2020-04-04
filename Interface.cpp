@@ -2,7 +2,7 @@
 #include "Ressource.hpp"
 
 #define NB_TOURS 200
-#define NB_RESSOURCE_TOUR 4
+#define NB_RESSOURCE_TOUR 5
 
 #include <chrono>
 #include <thread>

@@ -70,6 +70,8 @@ void Plateau::Afficher()
 
     std::vector<Agent*>::iterator it;
 
+    system("clear");
+
     for(it = _agents.begin(); it != _agents.end(); it++)
     {
         if((*it)->JeSuis() == AGRESSIF)
