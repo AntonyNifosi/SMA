@@ -21,8 +21,8 @@
 #define TAILLE_PLATEAU 20
 
 /**
- * @brief 
- * 
+ * @brief Classer permettant de lire un fichier de configuration passer en paramètre
+ * Reader est constitué d'un patron singleton (pour être sur de n'instancier qu'un seul reader)
  */
 class Reader
 {
