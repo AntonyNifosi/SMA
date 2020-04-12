@@ -1,0 +1,4 @@
+<map id="Passifish" name="Passifish">
+<area shape="rect" id="node2" href="$classAgent.html" title="classe mère des différentes Agent " alt="" coords="15,80,75,107"/>
+<area shape="rect" id="node3" href="$classEntitee.html" title="Classe mère des différentes Entitee. " alt="" coords="11,5,79,32"/>
+</map>

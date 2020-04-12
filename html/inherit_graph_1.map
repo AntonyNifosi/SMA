@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classEntitee.html" title="Classe mère des différentes Entitee. " alt="" coords="5,56,73,83"/>
+<area shape="rect" id="node2" href="$classAgent.html" title="classe mère des différentes Agent " alt="" coords="135,31,195,57"/>
+<area shape="rect" id="node5" href="$classRessource.html" title="Ressource que se dispute les différents Agent. " alt="" coords="121,81,209,108"/>
+<area shape="rect" id="node3" href="$classAgressif.html" title="Agent de type Agressif il cherche les cible les plus proches de lui. Après un certain temps sans mang..." alt="" coords="259,5,334,32"/>
+<area shape="rect" id="node4" href="$classPassifish.html" title="Agent de type Passifish plus faible que l&#39;agressif il favorise les Ressource. Cependant si les Passif..." alt="" coords="257,56,336,83"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Passifish" name="Passifish">
+<area shape="rect" id="node2" href="$classAgent.html" title="classe mère des différentes Agent " alt="" coords="15,171,75,197"/>
+<area shape="rect" id="node3" href="$classEntitee.html" title="Classe mère des différentes Entitee. " alt="" coords="11,95,79,121"/>
+<area shape="rect" id="node4" href="$classVector2.html" title="Vecteur à deux dimensions stockant une position x et y. " alt="" coords="9,5,80,32"/>
+</map>

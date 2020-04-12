@@ -1,0 +1,4 @@
+<map id="Agressif" name="Agressif">
+<area shape="rect" id="node2" href="$classAgent.html" title="classe mère des différentes Agent " alt="" coords="13,80,73,107"/>
+<area shape="rect" id="node3" href="$classEntitee.html" title="Classe mère des différentes Entitee. " alt="" coords="9,5,77,32"/>
+</map>

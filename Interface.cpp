@@ -1,12 +1,33 @@
-#include "Plateau.hpp"
-#include "Ressource.hpp"
+/**
+ * @file Interface.cpp
+ * @author Rémi Valarcher - Antony Nifosi
+ * @brief Interface de la simulation
+ * @version 1
+ * @date 2019-04-01
+ * 
+ * @copyright Copyright (c) 2020
+ */
 
+#include "Plateau.hpp"
+
+/**
+ * Nombre de tours de la simulation
+ */
 #define NB_TOURS 100
+
+/**
+ * Nombre de ressource apparaissant sur le Plateau chaque tour
+ */
 #define NB_RESSOURCE_TOUR 10
 
 #include <chrono>
 #include <thread>
 
+/**
+ * @brief Programme principale de la simulation crée le Plateau au départ puis appele les fonctions nécesaires à chaque tour de la simulation
+ * 
+ * @return int Code d'erreur lors du programme principale
+ */
 int main()
 {
     Plateau p;

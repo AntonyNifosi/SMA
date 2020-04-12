@@ -1,0 +1,6 @@
+<map id="Entitee" name="Entitee">
+<area shape="rect" id="node2" href="$classAgent.html" title="classe mère des différentes Agent " alt="" coords="63,80,123,107"/>
+<area shape="rect" id="node5" href="$classRessource.html" title="Ressource que se dispute les différents Agent. " alt="" coords="148,80,236,107"/>
+<area shape="rect" id="node3" href="$classAgressif.html" title="Agent de type Agressif il cherche les cible les plus proches de lui. Après un certain temps sans mang..." alt="" coords="5,155,80,181"/>
+<area shape="rect" id="node4" href="$classPassifish.html" title="Agent de type Passifish plus faible que l&#39;agressif il favorise les Ressource. Cependant si les Passif..." alt="" coords="105,155,183,181"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Entitee::setPos" name="Entitee::setPos">
+<area shape="rect" id="node2" href="$classPlateau.html#a98075ce2bca662e307aa752eca869c6e" title="Déplace une Entitee sur le Plateau. " alt="" coords="172,5,309,32"/>
+<area shape="rect" id="node3" href="$classAgent.html#a0e1c9de28932f66dddfde3ba9d4babcb" title="Déplace un Agent. " alt="" coords="357,5,463,32"/>
+<area shape="rect" id="node4" href="$classAgent.html#a5fd9134247f61680f90d9619dab484f0" title="Update de l&#39;Agent. " alt="" coords="511,5,624,32"/>
+</map>

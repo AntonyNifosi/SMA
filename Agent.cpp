@@ -1,23 +1,55 @@
+/**
+ * @file Agent.cpp
+ * @author Rémi Valarcher - Antony Nifosi
+ * @brief Implémentation des fonctions relatives à la classe Entitee
+ * @version 1
+ * @date 2019-04-01
+ * 
+ * @copyright Copyright (c) 2020
+ */
+
+
 #include "Agent.hpp"
 #include "Plateau.hpp"
-#include "Entitee.hpp"
 
+/**
+ * @brief Constructeur de la classe Agent
+ * 
+ * @param x position x de l'Agent
+ * @param y position y de l'Agent
+ * @param vision champ de vision de l'Agent
+ */
 Agent::Agent(int x, int y, int vision) : 
 Entitee(x, y), _age(0), _time_no_eat(0), _vision(vision)
 {}
 
+/**
+ * @brief Destructeur de la classe Agent
+ * 
+ */
 Agent::~Agent()
 {}
 
+/**
+ * @brief Update de l'Agent
+ * @details L'agent va chercher dans son champ de vision une cible. 
+ * Si une cible est trouvé l'Agent va alors essayer de se rapprocher de la cible.
+ * Sinon il va se déplacer sur case alétoire autour de lui si une case est libre.
+ * 
+ * @param p Le Plateau sur lequel évolue l'Agent
+ */
 void Agent::update(Plateau* p)
 {
+    //On récupère les Cible potentiel autour de l'agent
     std::vector<Cible_t> cibles = EnVue(p);
 
     _age++;
     _time_no_eat++;
 
+    //L'agent selectionne sa cible
     Cible_t c = Selection(cibles);
 
+    //Si une cible est séléctionné
     if(c.distance != 9999)
     {
         Vector2 depl = p->PathFinding(_pos, c.cible->getVector());
@@ -35,6 +67,7 @@ void Agent::update(Plateau* p)
 
         bool case_vide = false;
 
+        //On regarde si une case autour de l'agent est vide
         for (int i = _pos.getX() - 1; i <= _pos.getX() + 1; i++)
         {
             int distX = abs(_pos.getX() - i);
@@ -49,6 +82,7 @@ void Agent::update(Plateau* p)
 
         if(case_vide)
         {
+            //On génère un déplacement aléatoire
             do
             {
                 if(generateur() % 2)
@@ -71,20 +105,32 @@ void Agent::update(Plateau* p)
     }
 }
 
-void Agent::move(Vector2 dir, Plateau* p)
+/**
+ * @brief Déplace un Agent
+ * 
+ * @param dep Déplacement à réaliser
+ * @param p Plateau sur lequel évolue l'Agent
+ */
+void Agent::move(Vector2 dep, Plateau* p)
 {
-    int newPosX = _pos.getX() + dir.getX();
-    int newPosY = _pos.getY() + dir.getY();
+    int newPosX = _pos.getX() + dep.getX();
+    int newPosY = _pos.getY() + dep.getY();
 
     if(newPosX >= 0 && newPosX < TAILLE_PLATEAU && newPosY >= 0 && newPosY < TAILLE_PLATEAU)
     {
         if (p->recupCase(newPosX, newPosY) == nullptr)
         {
-            p->Deplacer(this, dir);
+            p->Deplacer(this, dep);
         }
     }
 }
 
+/**
+ * @brief Récupère les cibles potentiels présentes dans le champ de vision de l'Agent
+ * 
+ * @param p Plateau sur lequel évolue l'Agent
+ * @return std::vector<Cible_t> Vecteur contenant toutes les cibles potentiel
+ */
 std::vector<Cible_t> Agent::EnVue(Plateau* p)
 {
     std::vector<Cible_t> Cibles;
@@ -114,6 +160,11 @@ std::vector<Cible_t> Agent::EnVue(Plateau* p)
     return Cibles;
 }
 
+/**
+ * @brief Affiche la liste des cibles disponibles
+ * 
+ * @param cibles Vecteur contenant les listes
+ */
 void Agent::afficherCible(std::vector<Cible_t> cibles)
 {
     std::vector<Cible_t>::iterator it;
@@ -124,6 +175,11 @@ void Agent::afficherCible(std::vector<Cible_t> cibles)
     std::cout << std::endl;
 }
 
+/**
+ * @brief Crée un nouvel Agent adjacent à celui actuel
+ * 
+ * @param p Plateau sur lequel évolue l'Agent
+ */
 void Agent::seReproduire(Plateau *p)
 {
     Vector2 location = p->caseLibre(this);
@@ -136,6 +192,12 @@ void Agent::seReproduire(Plateau *p)
     }
 }
 
+/**
+ * @brief L'Agent mange une Entitee
+ * 
+ * @param p Plateau sur lequel évolue l'Agent
+ * @param e Entitee à manger
+ */
 void Agent::manger(Plateau *p, Entitee *e)
 {
     _time_no_eat = 0;

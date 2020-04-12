@@ -1,0 +1,5 @@
+<map id="Agent" name="Agent">
+<area shape="rect" id="node3" href="$classAgressif.html" title="Agent de type Agressif il cherche les cible les plus proches de lui. Après un certain temps sans mang..." alt="" coords="5,155,80,181"/>
+<area shape="rect" id="node4" href="$classPassifish.html" title="Agent de type Passifish plus faible que l&#39;agressif il favorise les Ressource. Cependant si les Passif..." alt="" coords="105,155,183,181"/>
+<area shape="rect" id="node2" href="$classEntitee.html" title="Classe mère des différentes Entitee. " alt="" coords="59,5,127,32"/>
+</map>

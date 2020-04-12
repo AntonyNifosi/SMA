@@ -1,3 +1,13 @@
+/**
+ * @file Reader.cpp
+ * @author Rémi Valarcher - Antony Nifosi
+ * @brief Implémentation des fonctions relatives à la classe Reader
+ * @version 1
+ * @date 2019-04-01
+ * 
+ * @copyright Copyright (c) 2020
+ */
+
 #include "Reader.hpp"
 
 Reader* Reader::_instance = nullptr;
