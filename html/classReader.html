@@ -66,22 +66,113 @@ $(function() {
 <div class="title">Reader Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Classer permettant de lire un fichier de configuration passer en paramètre <a class="el" href="classReader.html" title="Classer permettant de lire un fichier de configuration passer en paramètre Reader est constitué d&#39;un ...">Reader</a> est constitué d'un patron singleton (pour être sur de n'instancier qu'un seul reader)  
+ <a href="classReader.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Reader_8hpp_source.html">Reader.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a15e45602b4de99a20483a2a6f0f5f74f"><td class="memItemLeft" align="right" valign="top"><a id="a15e45602b4de99a20483a2a6f0f5f74f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Reader</b> (std::string path)</td></tr>
+<tr class="memitem:a15e45602b4de99a20483a2a6f0f5f74f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReader.html#a15e45602b4de99a20483a2a6f0f5f74f">Reader</a> (std::string path)</td></tr>
+<tr class="memdesc:a15e45602b4de99a20483a2a6f0f5f74f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur de la classe <a class="el" href="classReader.html" title="Classer permettant de lire un fichier de configuration passer en paramètre Reader est constitué d&#39;un ...">Reader</a>.  <a href="#a15e45602b4de99a20483a2a6f0f5f74f">More...</a><br /></td></tr>
 <tr class="separator:a15e45602b4de99a20483a2a6f0f5f74f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4452e16d14a171e97c71fbd8bf6122e5"><td class="memItemLeft" align="right" valign="top"><a id="a4452e16d14a171e97c71fbd8bf6122e5"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>readConfig</b> ()</td></tr>
+<tr class="memitem:a4452e16d14a171e97c71fbd8bf6122e5"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReader.html#a4452e16d14a171e97c71fbd8bf6122e5">readConfig</a> ()</td></tr>
+<tr class="memdesc:a4452e16d14a171e97c71fbd8bf6122e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction retournant le contenu du fichier de configuration du <a class="el" href="classReader.html" title="Classer permettant de lire un fichier de configuration passer en paramètre Reader est constitué d&#39;un ...">Reader</a>.  <a href="#a4452e16d14a171e97c71fbd8bf6122e5">More...</a><br /></td></tr>
 <tr class="separator:a4452e16d14a171e97c71fbd8bf6122e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:abc5d690c1c09453cbd3ce2d8efe5826f"><td class="memItemLeft" align="right" valign="top"><a id="abc5d690c1c09453cbd3ce2d8efe5826f"></a>
-static <a class="el" href="classReader.html">Reader</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getInstance</b> (std::string path)</td></tr>
+<tr class="memitem:abc5d690c1c09453cbd3ce2d8efe5826f"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classReader.html">Reader</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classReader.html#abc5d690c1c09453cbd3ce2d8efe5826f">getInstance</a> (std::string path)</td></tr>
+<tr class="memdesc:abc5d690c1c09453cbd3ce2d8efe5826f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implémentation du patron singleton renvoyant le reader déjà créer ou sinon en crée un nouveau.  <a href="#abc5d690c1c09453cbd3ce2d8efe5826f">More...</a><br /></td></tr>
 <tr class="separator:abc5d690c1c09453cbd3ce2d8efe5826f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Classer permettant de lire un fichier de configuration passer en paramètre <a class="el" href="classReader.html" title="Classer permettant de lire un fichier de configuration passer en paramètre Reader est constitué d&#39;un ...">Reader</a> est constitué d'un patron singleton (pour être sur de n'instancier qu'un seul reader) </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a15e45602b4de99a20483a2a6f0f5f74f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15e45602b4de99a20483a2a6f0f5f74f">&#9670;&nbsp;</a></span>Reader()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Reader::Reader </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructeur de la classe <a class="el" href="classReader.html" title="Classer permettant de lire un fichier de configuration passer en paramètre Reader est constitué d&#39;un ...">Reader</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>chemin vers le fichier de configuration </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="abc5d690c1c09453cbd3ce2d8efe5826f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc5d690c1c09453cbd3ce2d8efe5826f">&#9670;&nbsp;</a></span>getInstance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classReader.html">Reader</a> * Reader::getInstance </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implémentation du patron singleton renvoyant le reader déjà créer ou sinon en crée un nouveau. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>chemin vers le fichier de configuration </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Reader* <a class="el" href="classReader.html" title="Classer permettant de lire un fichier de configuration passer en paramètre Reader est constitué d&#39;un ...">Reader</a> créé </dd></dl>
+<p>Permet de vérifier si un <a class="el" href="classReader.html" title="Classer permettant de lire un fichier de configuration passer en paramètre Reader est constitué d&#39;un ...">Reader</a> a déjà été créé </p>
+
+</div>
+</div>
+<a id="a4452e16d14a171e97c71fbd8bf6122e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4452e16d14a171e97c71fbd8bf6122e5">&#9670;&nbsp;</a></span>readConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Reader::readConfig </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction retournant le contenu du fichier de configuration du <a class="el" href="classReader.html" title="Classer permettant de lire un fichier de configuration passer en paramètre Reader est constitué d&#39;un ...">Reader</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::string Contenu de fichier de configuration lu </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="Reader_8hpp_source.html">Reader.hpp</a></li>
 <li><a class="el" href="Reader_8cpp.html">Reader.cpp</a></li>
